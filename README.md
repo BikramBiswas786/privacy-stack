@@ -1,30 +1,28 @@
-\# Privacy Stack 🔐
-
-
+# Privacy Stack 🔐
 
 Privacy-focused research paper generator and cryptocurrency implementation.
 
+## Features
 
+- 🔍 Privacy research papers generator
+- 🔐 Cryptocurrency implementations
+- ⛓️ Blockchain-focused content
+- 🚀 Production-quality Python code
+- 📚 Well-documented
+- 🛡️ Security best practices
 
-\## Features
+## Installation
 
-\- Generate 50+ privacy research papers
+### Prerequisites
+- Python 3.8+
+- Git
+- GitHub account
 
-\- 10 working crypto implementations
+### Steps
 
-\- Blockchain-focused content
-
-\- Production-quality code
-
-
-
-\## Installation
-
-
-
+1. Clone the repository:
 ```bash
-
-pip install -r requirements.txt
-
+git clone https://github.com/BikramBiswas786/privacy-stack.git
+cd privacy-stack
 
 
