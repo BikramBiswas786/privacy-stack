@@ -1,13 +1,8 @@
-﻿FROM python:3.11-slim
-WORKDIR /app
-# Copy Python source files
-COPY src/ /app/src/
-# Install dependencies
-RUN pip install --no-cache-dir \
-    requests \
-    python-dotenv
-# Set Python path
-ENV PYTHONPATH=/app
-ENV PYTHONUNBUFFERED=1
-# Run the main script
+﻿FROM apify/actor-python-3.11
+
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
+
+COPY src ./src
+
 CMD ["python", "-m", "src.main"]

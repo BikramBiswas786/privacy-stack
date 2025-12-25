@@ -1,0 +1,12 @@
+{
+  "title": "Anon Research Lab Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "maxRepositories": {
+      "title": "Maximum repositories",
+      "type": "integer",
+      "default": 8
+    }
+  }
+}
