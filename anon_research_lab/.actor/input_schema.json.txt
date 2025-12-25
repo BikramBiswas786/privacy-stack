@@ -1,12 +1,18 @@
 {
-  "title": "Anon Research Lab Input",
-  "type": "object",
-  "schemaVersion": 1,
-  "properties": {
-    "maxRepositories": {
-      "title": "Maximum repositories",
-      "type": "integer",
-      "default": 8
-    }
-  }
+  "actorSpecVersion": 1,
+  "name": "anon-research-lab",
+  "title": "Anon Research Lab - Privacy Stack",
+  "description": "Privacy & Cryptography Research Paper Generator",
+  "version": "1.0.0",
+  "buildTag": "latest",
+  "dockerfileBaseImage": "apify/actor-python-3.11",
+  "documentation": "README.md",
+  "gitRepo": "https://github.com/BikramBiswas786/privacy-stack",
+  "environmentVariables": {
+    "PYTHONUNBUFFERED": "1"
+  },
+  "categories": [
+    "RESEARCH",
+    "UTILITIES"
+  ]
 }
