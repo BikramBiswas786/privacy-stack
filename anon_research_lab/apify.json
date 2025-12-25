@@ -2,24 +2,24 @@
   "actorSpecification": 2,
   "name": "anon-research-lab",
   "title": "Anon Research Lab - Crypto Code Analyzer",
-  "description": "Analyzes GitHub crypto repositories and generates academic research papers with real code examples. Tracks 8+ projects with 127k+ GitHub stars.",
+  "description": "Analyzes GitHub crypto repositories and generates academic research papers with real code examples",
   "version": "1.0.0",
+  "buildTag": "latest",
+  "dockerImage": "python:3.11-slim",
   "categories": ["RESEARCH", "SCRAPING"],
   "isPublic": true,
   "input": {
     "type": "object",
     "properties": {
-      "min_stars": {
-        "type": "integer",
-        "description": "Minimum GitHub stars",
-        "default": 1000
-      },
-      "language": {
-        "type": "string",
-        "enum": ["Go", "Rust", "C++", "C", "Python", "Kotlin"],
-        "description": "Programming language filter",
-        "default": "Go"
+      "repositories": {
+        "type": "array",
+        "title": "Repositories to analyze",
+        "description": "List of GitHub repositories to analyze",
+        "default": []
       }
     }
+  },
+  "env": {
+    "PYTHONUNBUFFERED": "1"
   }
 }
