@@ -1,16 +1,11 @@
-﻿FROM apify/actor-python
+FROM python:3.11-slim
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy requirements and install
-COPY requirements.txt ./
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy source code
-COPY src ./src
+COPY src/ ./src/
 
-# Ensure unbuffered output
-ENV PYTHONUNBUFFERED=1
+CMD ["python", "src/main.py"]
 
-# Run the actor
-CMD ["python", "-m", "src.main"]
