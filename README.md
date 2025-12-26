@@ -1,4 +1,7 @@
 # Privacy Stack 🔐
+"Privacy Stack makes peer-reviewed privacy research reproducible, teachable and auditable — 
+converting papers into verified explanations, threat models, and reference implementations 
+that researchers and practitioners can trust."
 
 Privacy-focused research paper generator and cryptocurrency implementation.
 
@@ -24,5 +27,6 @@ Privacy-focused research paper generator and cryptocurrency implementation.
 ```bash
 git clone https://github.com/BikramBiswas786/privacy-stack.git
 cd privacy-stack
+
 
 
