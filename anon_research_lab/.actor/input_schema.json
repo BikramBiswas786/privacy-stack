@@ -1,0 +1,19 @@
+{
+  "title": "Anon Research Lab Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "maxRepositories": {
+      "title": "Maximum repositories to process",
+      "type": "integer",
+      "description": "Limit the number of repos analyzed",
+      "default": 8
+    },
+    "includeMetadata": {
+      "title": "Include metadata",
+      "type": "boolean",
+      "description": "Include detailed metadata in output",
+      "default": true
+    }
+  }
+}
