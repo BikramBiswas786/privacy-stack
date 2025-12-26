@@ -1,21 +1,10 @@
-FROM python:3.11-slim
+FROM apify/actor-python:0.5.1
 
-WORKDIR /app
+COPY . /usr/src/app
+WORKDIR /usr/src/app
 
-# Create virtual environment (fixes pip warning)
-RUN python -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
+USER apify
 
-# Copy requirements.txt
-COPY requirements.txt .
+RUN pip install --no-cache-dir apify-client
 
-# Install dependencies using venv pip (NO root warning)
-RUN /opt/venv/bin/pip install --upgrade pip && \
-    /opt/venv/bin/pip install --no-cache-dir apify-client
-
-# Copy source code
-COPY . .
-
-# Run using venv python
-CMD ["/opt/venv/bin/python", "src/main.py"]
-
+CMD ["python", "src/main.py"]
