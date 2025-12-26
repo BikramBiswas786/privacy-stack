@@ -1,25 +1,14 @@
-﻿{
-  "actorSpecification": 2,
-  "name": "anon-research-lab",
-  "title": "Anon Research Lab - Crypto Code Analyzer",
-  "description": "Analyzes GitHub crypto repositories and generates academic research papers with real code examples",
+{
+  "actorSpecVersion": 1,
+  "name": "anon-lab",
+  "title": "Anon Lab — Reproducible Privacy Research",
+  "description": "Convert papers on privacy & cryptography into verified explanations, threat models, reference implementations, exercises, and security analysis.",
   "version": "1.0.0",
   "buildTag": "latest",
-  "dockerImage": "python:3.11-slim",
-  "categories": ["RESEARCH", "SCRAPING"],
-  "isPublic": true,
-  "input": {
-    "type": "object",
-    "properties": {
-      "repositories": {
-        "type": "array",
-        "title": "Repositories to analyze",
-        "description": "List of GitHub repositories to analyze",
-        "default": []
-      }
-    }
-  },
-  "env": {
-    "PYTHONUNBUFFERED": "1"
-  }
+  "dockerfile": "./Dockerfile",
+  "input": "./.actor/input_schema.json",
+  "output": "./.actor/output_schema.json",
+  "readme": "./README.md"
 }
+
+
