@@ -1,0 +1,512 @@
+{
+  "title": "Anon Lab Output",
+  "type": "object",
+  "description": "Complete structured content for one or more privacy/cryptography papers",
+  "schemaVersion": 1,
+  "properties": {
+    "papers": {
+      "type": "array",
+      "title": "Papers",
+      "description": "Array of paper entries, each with full metadata, learning objectives, threat model, exercises, verification log, etc.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Paper Title",
+            "example": "Signal Protocol: End-to-End Encryption",
+            "description": "Full, official title of the paper"
+          },
+          "tldr": {
+            "type": "string",
+            "title": "TL;DR (One-Sentence Summary)",
+            "example": "Signal Protocol is a cryptographic framework for secure asynchronous messaging using the Double Ratchet algorithm with forward secrecy and break-in recovery.",
+            "description": "1–2 sentence plain-English summary. Perfect for busy researchers."
+          },
+          "authors": {
+            "type": "array",
+            "title": "Authors",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Moxie Marlinspike"
+                },
+                "affiliation": {
+                  "type": "string",
+                  "example": "Open Whisper Systems"
+                },
+                "orcid": {
+                  "type": "string",
+                  "description": "ORCID identifier if available"
+                }
+              }
+            }
+          },
+          "year": {
+            "type": "integer",
+            "title": "Year",
+            "example": 2016
+          },
+          "venue": {
+            "type": "string",
+            "title": "Venue",
+            "description": "Conference, journal, or publication URL",
+            "example": "Open Whisper Systems specification"
+          },
+          "doi": {
+            "type": "string",
+            "title": "DOI / arXiv Link",
+            "description": "Official link to paper (DOI URL or arXiv link)",
+            "example": "https://signal.org/docs/specifications/doubleratchet/"
+          },
+          "bibtex": {
+            "type": "string",
+            "title": "BibTeX Citation",
+            "description": "Copy-paste ready BibTeX for academic papers"
+          },
+          "metadataStatus": {
+            "type": "string",
+            "enum": ["verified", "unverified"],
+            "title": "Metadata Status",
+            "description": "Has the metadata been verified against official sources?"
+          },
+          "trustLevel": {
+            "type": "string",
+            "enum": [
+              "Level 1: Prototype",
+              "Level 2: Reviewed",
+              "Level 3: Audited",
+              "Level 4: Production"
+            ],
+            "title": "Trust Level",
+            "description": "Verification status: Prototype (minimal), Reviewed (metadata + pedagogy verified), Audited (crypto reviewed + tested), Production (independent audit + legal review)"
+          },
+          "learningObjectives": {
+            "type": "array",
+            "title": "Learning Objectives",
+            "description": "3 measurable learning objectives (what you'll be able to do/understand after reading)",
+            "items": {
+              "type": "object",
+              "properties": {
+                "objective": {
+                  "type": "string",
+                  "example": "Explain the Double Ratchet algorithm and why each step is necessary"
+                },
+                "level": {
+                  "type": "string",
+                  "enum": ["beginner", "intermediate", "advanced"]
+                }
+              }
+            }
+          },
+          "threatModel": {
+            "type": "object",
+            "title": "Threat Model",
+            "description": "Plain-English explanation of adversary capabilities, protections, and assumptions",
+            "properties": {
+              "description": {
+                "type": "string",
+                "description": "Overview of the threat scenario"
+              },
+              "adversaryCapabilities": {
+                "type": "string",
+                "description": "What can the adversary do? (eavesdrop, forge, steal device, etc.)"
+              },
+              "adversaryLimitations": {
+                "type": "string",
+                "description": "What can the adversary NOT do? (break crypto, predict randomness, etc.)"
+              },
+              "protections": {
+                "type": "string",
+                "example": "Confidentiality, authentication, forward secrecy, break-in recovery",
+                "description": "What properties does the protocol provide?"
+              },
+              "assumptions": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "example": "ECDH is hard to compute"
+                },
+                "description": "Trust assumptions required for security"
+              },
+              "diagram": {
+                "type": "string",
+                "description": "ASCII art or text diagram showing the threat model visually"
+              }
+            }
+          },
+          "algorithmWalkthrough": {
+            "type": "object",
+            "title": "Algorithm Walkthrough",
+            "properties": {
+              "steps": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "stepNumber": {
+                      "type": "integer"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "pseudocode": {
+                      "type": "string"
+                    },
+                    "why": {
+                      "type": "string",
+                      "description": "Why is this step necessary?"
+                    }
+                  }
+                }
+              },
+              "fullExample": {
+                "type": "string",
+                "description": "Complete worked example showing all steps with data"
+              }
+            }
+          },
+          "implementationNotes": {
+            "type": "object",
+            "title": "Implementation Notes",
+            "properties": {
+              "whatIsImplemented": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "What does this entry provide?"
+              },
+              "whatIsOmitted": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "What is intentionally left out? (and why)"
+              },
+              "sourceBasis": {
+                "type": "string",
+                "description": "Which figures/sections from the paper does this implementation reference?"
+              },
+              "keyChoices": {
+                "type": "string",
+                "description": "Why were certain crypto primitives chosen? (AES-256, HMAC-SHA256, etc.)"
+              }
+            }
+          },
+          "securityCommentary": {
+            "type": "object",
+            "title": "Security Commentary",
+            "description": "What the code guarantees and does NOT guarantee",
+            "properties": {
+              "guarantees": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "example": "If MK is kept secret, eavesdropper cannot read plaintext"
+                },
+                "description": "What this code DOES provide"
+              },
+              "limitations": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "example": "If SHA-256 is broken, Signal is broken"
+                },
+                "description": "What this code DOES NOT provide"
+              },
+              "cryptographicPrimitives": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "AES-256-CBC"
+                    },
+                    "purpose": {
+                      "type": "string"
+                    },
+                    "strengthAssumption": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "commonPitfalls": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "pitfall": {
+                      "type": "string",
+                      "example": "Reusing a message key"
+                    },
+                    "wrongCode": {
+                      "type": "string"
+                    },
+                    "rightCode": {
+                      "type": "string"
+                    },
+                    "risk": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "limitations": {
+            "type": "array",
+            "title": "Explicit Limitations",
+            "items": {
+              "type": "object",
+              "properties": {
+                "limitation": {
+                  "type": "string",
+                  "example": "Metadata leakage"
+                },
+                "why": {
+                  "type": "string"
+                },
+                "impact": {
+                  "type": "string"
+                },
+                "mitigation": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "knownAttacks": {
+            "type": "array",
+            "title": "Known Attacks",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Silent Reset Attack"
+                },
+                "how": {
+                  "type": "string"
+                },
+                "result": {
+                  "type": "string"
+                },
+                "defense": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": ["mitigated", "outstanding", "theoretical"]
+                }
+              }
+            }
+          },
+          "exercises": {
+            "type": "array",
+            "title": "Exercises",
+            "items": {
+              "type": "object",
+              "properties": {
+                "exerciseNumber": {
+                  "type": "integer"
+                },
+                "level": {
+                  "type": "string",
+                  "enum": ["beginner", "intermediate", "advanced"]
+                },
+                "timeMinutes": {
+                  "type": "integer"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "answer": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "useCases": {
+            "type": "array",
+            "title": "Real-World Use Cases",
+            "items": {
+              "type": "object",
+              "properties": {
+                "scenario": {
+                  "type": "string"
+                },
+                "what": {
+                  "type": "string",
+                  "description": "What does this provide?"
+                },
+                "whatNot": {
+                  "type": "string",
+                  "description": "What does it NOT provide?"
+                },
+                "benefit": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "teachingNotes": {
+            "type": "object",
+            "title": "Teaching Notes",
+            "properties": {
+              "audience": {
+                "type": "string",
+                "example": "Advanced undergraduates, graduate students, security engineers"
+              },
+              "prerequisites": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "timeRequired": {
+                "type": "object",
+                "properties": {
+                  "lecture": {
+                    "type": "string",
+                    "example": "90 minutes"
+                  },
+                  "exercises": {
+                    "type": "string"
+                  },
+                  "implementation": {
+                    "type": "string"
+                  }
+                }
+              },
+              "demoSuggestions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "howToCite": {
+            "type": "object",
+            "title": "How to Cite",
+            "properties": {
+              "bibtex": {
+                "type": "string"
+              },
+              "shortForm": {
+                "type": "string",
+                "example": "Marlinspike & Perrin (2016). Signal Protocol. Open Whisper Systems."
+              },
+              "longForm": {
+                "type": "string"
+              }
+            }
+          },
+          "verificationLog": {
+            "type": "array",
+            "title": "Verification Log",
+            "description": "Who reviewed this paper, when, and what they checked",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "reviewer": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string",
+                  "enum": [
+                    "Metadata Verifier",
+                    "Crypto Reviewer",
+                    "Pedagogy Reviewer",
+                    "Independent Auditor"
+                  ]
+                },
+                "status": {
+                  "type": "string",
+                  "enum": ["✅ Verified", "⏳ Pending", "❌ Unverified"]
+                },
+                "evidence": {
+                  "type": "string"
+                },
+                "notes": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "lastModified": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Last Modified"
+          },
+          "nextScheduledReview": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Next Scheduled Review"
+          }
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "title": "Statistics",
+      "properties": {
+        "totalPapersFound": {
+          "type": "integer"
+        },
+        "papersAtLevel2Plus": {
+          "type": "integer",
+          "description": "Reviewed or better"
+        },
+        "papersAtLevel3Plus": {
+          "type": "integer",
+          "description": "Audited or better"
+        },
+        "papersAtLevel4": {
+          "type": "integer",
+          "description": "Production-ready"
+        },
+        "totalReviewers": {
+          "type": "integer"
+        },
+        "averageTrustLevel": {
+          "type": "string"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "title": "Response Metadata",
+      "properties": {
+        "requestedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "actorVersion": {
+          "type": "string",
+          "example": "1.0.0"
+        },
+        "dataSource": {
+          "type": "string",
+          "example": "Anon Lab Privacy Research Platform"
+        },
+        "documentsGenerated": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
+
