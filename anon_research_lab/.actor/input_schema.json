@@ -1,19 +1,41 @@
 {
-  "title": "Anon Research Lab Input",
+  "title": "Privacy Stack Input",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
-    "maxRepositories": {
-      "title": "Maximum repositories to process",
-      "type": "integer",
-      "description": "Limit the number of repos analyzed",
-      "default": 8
+    "repositoryName": {
+      "title": "Repository Name",
+      "type": "string",
+      "description": "Privacy/crypto project to analyze. Examples: 'Signal Protocol', 'Tor', 'Bitcoin', 'Monero', 'Ethereum'. Actor returns threat model, security analysis, learning objectives, exercises, and verification log.",
+      "example": "Signal Protocol",
+      "default": "Signal Protocol"
     },
-    "includeMetadata": {
-      "title": "Include metadata",
+    "includeTheatModel": {
+      "title": "Include Threat Model",
       "type": "boolean",
-      "description": "Include detailed metadata in output",
+      "description": "Generate plain-English adversary model, protocol guarantees, and assumptions.",
       "default": true
+    },
+    "includeExercises": {
+      "title": "Include Exercises",
+      "type": "boolean",
+      "description": "Generate 4 practical exercises (beginner → advanced) with answers for learning.",
+      "default": true
+    },
+    "includeSecurityAnalysis": {
+      "title": "Include Security Analysis",
+      "type": "boolean",
+      "description": "Detailed analysis: crypto primitives, common pitfalls, limitations, known attacks.",
+      "default": true
+    },
+    "outputFormat": {
+      "title": "Output Format",
+      "type": "string",
+      "enum": ["json", "markdown"],
+      "description": "json for APIs/workflows, markdown for reading/sharing.",
+      "default": "json"
     }
-  }
+  },
+  "required": ["repositoryName"]
 }
+
