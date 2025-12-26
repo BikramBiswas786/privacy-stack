@@ -24,9 +24,8 @@ Privacy-focused research paper generator and cryptocurrency implementation.
 ### Steps
 
 1. Clone the repository:
-```bash
-git clone https://github.com/BikramBiswas786/privacy-stack.git
-cd privacy-stack
+```bash git clone https://github.com/BikramBiswas786/privacy-stack.git
+
 
 {
   "title": "Signal Protocol: End-to-End Encryption",
@@ -275,6 +274,3 @@ cd privacy-stack
   "lastModified": "2025-12-26T06:00:00Z",
   "nextScheduledReview": "2026-06-26T06:00:00Z"
 }
-
-
-
