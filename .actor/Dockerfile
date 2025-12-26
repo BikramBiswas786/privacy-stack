@@ -1,18 +1,21 @@
-# 🔥 FIXED: Virtual Environment - NO PIP ROOT WARNING
 FROM python:3.11-slim
 
 WORKDIR /app
 
-# ✅ CREATE VIRTUAL ENVIRONMENT (eliminates pip root warning)
+# Create virtual environment (fixes pip warning)
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-# Install dependencies INSIDE venv (no root warning)
+# Copy requirements.txt
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+
+# Install dependencies using venv pip (NO root warning)
+RUN /opt/venv/bin/pip install --upgrade pip && \
+    /opt/venv/bin/pip install --no-cache-dir apify-client
 
 # Copy source code
 COPY . .
 
-# Default command
-CMD ["python", "src/main.py"]
+# Run using venv python
+CMD ["/opt/venv/bin/python", "src/main.py"]
+
