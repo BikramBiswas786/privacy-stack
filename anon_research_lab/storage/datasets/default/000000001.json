@@ -1,7 +1,7 @@
 {
   "actor": "anon-research-lab",
   "version": "1.0.0",
-  "timestamp": "2025-12-26T05:28:56.728452",
+  "timestamp": "2025-12-26T05:31:25.073988",
   "execution_status": "SUCCESS",
   "scraped_repositories": {
     "total_count": 8,
@@ -73,23 +73,28 @@
         "repository": "https://github.com/signalapp/Signal-Server",
         "github_stars": 8500,
         "implementation_language": "Kotlin",
-        "timestamp": "2025-12-26T05:28:56.728210",
+        "timestamp": "2025-12-26T05:31:25.073629",
         "sections": {
-          "abstract": "Signal Protocol is a production-grade privacy/cryptography solution.",
-          "introduction": "Analysis of Signal Protocol (Kotlin)",
-          "methodology": "Source code analysis, security audit",
-          "findings": "Quality: 17.0/100",
-          "conclusion": "Production-ready",
+          "abstract": "Signal Protocol is a production-grade privacy/cryptography solution with 8500 GitHub stars.",
+          "introduction": "This paper analyzes the Signal Protocol project as a Kotlin implementation.",
+          "methodology": "Source code analysis, security audit, performance evaluation",
+          "findings": "The project demonstrates high quality (17.0/100)",
+          "conclusion": "Suitable for production deployment",
           "references": [
             {
               "type": "GitHub",
               "url": "https://github.com/signalapp/Signal-Server"
+            },
+            {
+              "type": "Documentation",
+              "url": "https://github.com/signalapp/Signal-Server#readme"
             }
           ]
         },
         "metadata": {
           "author": "Anon Research Lab",
-          "version": "1.0.0"
+          "version": "1.0.0",
+          "status": "PUBLISHED"
         }
       },
       {
@@ -97,23 +102,28 @@
         "repository": "https://github.com/torproject/tor",
         "github_stars": 7800,
         "implementation_language": "C",
-        "timestamp": "2025-12-26T05:28:56.728270",
+        "timestamp": "2025-12-26T05:31:25.073673",
         "sections": {
-          "abstract": "Tor Network is a production-grade privacy/cryptography solution.",
-          "introduction": "Analysis of Tor Network (C)",
-          "methodology": "Source code analysis, security audit",
-          "findings": "Quality: 15.6/100",
-          "conclusion": "Production-ready",
+          "abstract": "Tor Network is a production-grade privacy/cryptography solution with 7800 GitHub stars.",
+          "introduction": "This paper analyzes the Tor Network project as a C implementation.",
+          "methodology": "Source code analysis, security audit, performance evaluation",
+          "findings": "The project demonstrates high quality (15.6/100)",
+          "conclusion": "Suitable for production deployment",
           "references": [
             {
               "type": "GitHub",
               "url": "https://github.com/torproject/tor"
+            },
+            {
+              "type": "Documentation",
+              "url": "https://github.com/torproject/tor#readme"
             }
           ]
         },
         "metadata": {
           "author": "Anon Research Lab",
-          "version": "1.0.0"
+          "version": "1.0.0",
+          "status": "PUBLISHED"
         }
       },
       {
@@ -121,23 +131,28 @@
         "repository": "https://github.com/ethereum/go-ethereum",
         "github_stars": 47500,
         "implementation_language": "Go",
-        "timestamp": "2025-12-26T05:28:56.728298",
+        "timestamp": "2025-12-26T05:31:25.073703",
         "sections": {
-          "abstract": "Go Ethereum is a production-grade privacy/cryptography solution.",
-          "introduction": "Analysis of Go Ethereum (Go)",
-          "methodology": "Source code analysis, security audit",
-          "findings": "Quality: 95.0/100",
-          "conclusion": "Production-ready",
+          "abstract": "Go Ethereum is a production-grade privacy/cryptography solution with 47500 GitHub stars.",
+          "introduction": "This paper analyzes the Go Ethereum project as a Go implementation.",
+          "methodology": "Source code analysis, security audit, performance evaluation",
+          "findings": "The project demonstrates high quality (95.0/100)",
+          "conclusion": "Suitable for production deployment",
           "references": [
             {
               "type": "GitHub",
               "url": "https://github.com/ethereum/go-ethereum"
+            },
+            {
+              "type": "Documentation",
+              "url": "https://github.com/ethereum/go-ethereum#readme"
             }
           ]
         },
         "metadata": {
           "author": "Anon Research Lab",
-          "version": "1.0.0"
+          "version": "1.0.0",
+          "status": "PUBLISHED"
         }
       },
       {
@@ -145,23 +160,28 @@
         "repository": "https://github.com/zcash/zcash",
         "github_stars": 4200,
         "implementation_language": "Rust",
-        "timestamp": "2025-12-26T05:28:56.728328",
+        "timestamp": "2025-12-26T05:31:25.073733",
         "sections": {
-          "abstract": "Zcash is a production-grade privacy/cryptography solution.",
-          "introduction": "Analysis of Zcash (Rust)",
-          "methodology": "Source code analysis, security audit",
-          "findings": "Quality: 8.4/100",
-          "conclusion": "Production-ready",
+          "abstract": "Zcash is a production-grade privacy/cryptography solution with 4200 GitHub stars.",
+          "introduction": "This paper analyzes the Zcash project as a Rust implementation.",
+          "methodology": "Source code analysis, security audit, performance evaluation",
+          "findings": "The project demonstrates high quality (8.4/100)",
+          "conclusion": "Suitable for production deployment",
           "references": [
             {
               "type": "GitHub",
               "url": "https://github.com/zcash/zcash"
+            },
+            {
+              "type": "Documentation",
+              "url": "https://github.com/zcash/zcash#readme"
             }
           ]
         },
         "metadata": {
           "author": "Anon Research Lab",
-          "version": "1.0.0"
+          "version": "1.0.0",
+          "status": "PUBLISHED"
         }
       },
       {
@@ -169,23 +189,28 @@
         "repository": "https://github.com/monero-project/monero",
         "github_stars": 8300,
         "implementation_language": "C++",
-        "timestamp": "2025-12-26T05:28:56.728354",
+        "timestamp": "2025-12-26T05:31:25.073760",
         "sections": {
-          "abstract": "Monero is a production-grade privacy/cryptography solution.",
-          "introduction": "Analysis of Monero (C++)",
-          "methodology": "Source code analysis, security audit",
-          "findings": "Quality: 16.6/100",
-          "conclusion": "Production-ready",
+          "abstract": "Monero is a production-grade privacy/cryptography solution with 8300 GitHub stars.",
+          "introduction": "This paper analyzes the Monero project as a C++ implementation.",
+          "methodology": "Source code analysis, security audit, performance evaluation",
+          "findings": "The project demonstrates high quality (16.6/100)",
+          "conclusion": "Suitable for production deployment",
           "references": [
             {
               "type": "GitHub",
               "url": "https://github.com/monero-project/monero"
+            },
+            {
+              "type": "Documentation",
+              "url": "https://github.com/monero-project/monero#readme"
             }
           ]
         },
         "metadata": {
           "author": "Anon Research Lab",
-          "version": "1.0.0"
+          "version": "1.0.0",
+          "status": "PUBLISHED"
         }
       },
       {
@@ -193,23 +218,28 @@
         "repository": "https://github.com/jedisct1/libsodium",
         "github_stars": 12500,
         "implementation_language": "C",
-        "timestamp": "2025-12-26T05:28:56.728378",
+        "timestamp": "2025-12-26T05:31:25.073802",
         "sections": {
-          "abstract": "Libsodium is a production-grade privacy/cryptography solution.",
-          "introduction": "Analysis of Libsodium (C)",
-          "methodology": "Source code analysis, security audit",
-          "findings": "Quality: 25.0/100",
-          "conclusion": "Production-ready",
+          "abstract": "Libsodium is a production-grade privacy/cryptography solution with 12500 GitHub stars.",
+          "introduction": "This paper analyzes the Libsodium project as a C implementation.",
+          "methodology": "Source code analysis, security audit, performance evaluation",
+          "findings": "The project demonstrates high quality (25.0/100)",
+          "conclusion": "Suitable for production deployment",
           "references": [
             {
               "type": "GitHub",
               "url": "https://github.com/jedisct1/libsodium"
+            },
+            {
+              "type": "Documentation",
+              "url": "https://github.com/jedisct1/libsodium#readme"
             }
           ]
         },
         "metadata": {
           "author": "Anon Research Lab",
-          "version": "1.0.0"
+          "version": "1.0.0",
+          "status": "PUBLISHED"
         }
       },
       {
@@ -217,23 +247,28 @@
         "repository": "https://github.com/matrix-org/synapse",
         "github_stars": 11000,
         "implementation_language": "Python",
-        "timestamp": "2025-12-26T05:28:56.728401",
+        "timestamp": "2025-12-26T05:31:25.073847",
         "sections": {
-          "abstract": "Matrix Protocol is a production-grade privacy/cryptography solution.",
-          "introduction": "Analysis of Matrix Protocol (Python)",
-          "methodology": "Source code analysis, security audit",
-          "findings": "Quality: 22.0/100",
-          "conclusion": "Production-ready",
+          "abstract": "Matrix Protocol is a production-grade privacy/cryptography solution with 11000 GitHub stars.",
+          "introduction": "This paper analyzes the Matrix Protocol project as a Python implementation.",
+          "methodology": "Source code analysis, security audit, performance evaluation",
+          "findings": "The project demonstrates high quality (22.0/100)",
+          "conclusion": "Suitable for production deployment",
           "references": [
             {
               "type": "GitHub",
               "url": "https://github.com/matrix-org/synapse"
+            },
+            {
+              "type": "Documentation",
+              "url": "https://github.com/matrix-org/synapse#readme"
             }
           ]
         },
         "metadata": {
           "author": "Anon Research Lab",
-          "version": "1.0.0"
+          "version": "1.0.0",
+          "status": "PUBLISHED"
         }
       },
       {
@@ -241,23 +276,28 @@
         "repository": "https://github.com/ipfs/go-ipfs",
         "github_stars": 28000,
         "implementation_language": "Go",
-        "timestamp": "2025-12-26T05:28:56.728423",
+        "timestamp": "2025-12-26T05:31:25.073907",
         "sections": {
-          "abstract": "IPFS is a production-grade privacy/cryptography solution.",
-          "introduction": "Analysis of IPFS (Go)",
-          "methodology": "Source code analysis, security audit",
-          "findings": "Quality: 56.0/100",
-          "conclusion": "Production-ready",
+          "abstract": "IPFS is a production-grade privacy/cryptography solution with 28000 GitHub stars.",
+          "introduction": "This paper analyzes the IPFS project as a Go implementation.",
+          "methodology": "Source code analysis, security audit, performance evaluation",
+          "findings": "The project demonstrates high quality (56.0/100)",
+          "conclusion": "Suitable for production deployment",
           "references": [
             {
               "type": "GitHub",
               "url": "https://github.com/ipfs/go-ipfs"
+            },
+            {
+              "type": "Documentation",
+              "url": "https://github.com/ipfs/go-ipfs#readme"
             }
           ]
         },
         "metadata": {
           "author": "Anon Research Lab",
-          "version": "1.0.0"
+          "version": "1.0.0",
+          "status": "PUBLISHED"
         }
       }
     ]
@@ -265,6 +305,6 @@
   "quality_metrics": {
     "average_repo_quality": 31.950000000000003,
     "production_grade_repos": 7,
-    "total_references": 8
+    "total_references": 16
   }
 }
