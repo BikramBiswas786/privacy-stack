@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # main.py - Complete 60 Papers Database for Apify Actor
-# PRODUCTION READY - ALL 60 PAPERS × 20 COLUMNS (EXACT ORDER 01-20)
+# PRODUCTION READY - ALL 60 PAPERS × 20 COLUMNS (EXACT ORDER 01-20 ZERO-PADDED)
 # Deploy on Apify Platform - Python with asyncio
-# FIX: Zero-padded column names (01_ID, 02_Title, etc.) for correct Apify table sorting
+# CRITICAL FIX: Zero-padded column names (01_ID, 02_Title, etc.) for correct Apify table numerical sorting
 
 import asyncio
 import json
@@ -11,7 +11,7 @@ from apify import Actor
 
 
 async def main():
-    """Push all 60 papers with EXACT 20-column structure (01-20 zero-padded)"""
+    """Push all 60 papers with EXACT 20-column structure (01-20 zero-padded for correct sort)"""
     
     async with Actor:
         Actor.log.info("=" * 100)
@@ -19,44 +19,26 @@ async def main():
         Actor.log.info("=" * 100)
         Actor.log.info(f"📅 Generated: {datetime.now().isoformat()}")
         Actor.log.info(f"📊 Papers: 60 | Columns: 20 | Data Points: 1,200")
-        Actor.log.info(f"🔐 Format: EXACT 20-COLUMN STRUCTURE (Columns 01-20 ZERO-PADDED for correct sort)")
+        Actor.log.info(f"🔐 Format: EXACT 20-COLUMN STRUCTURE (Columns 01-20 ZERO-PADDED)")
         Actor.log.info("=" * 100)
         
         dataset = await Actor.open_dataset()
         
-        # Load complete papers from JSON
-        with open('complete_60_papers.json', 'r') as f:
+        # Load complete papers from JSON (already has zero-padded columns)
+        with open('complete_60_papers_fixed.json', 'r') as f:
             all_papers = json.load(f)
         
-        # PUSH TO DATASET with ZERO-PADDED COLUMN NAMES
+        # PUSH TO DATASET
         papers_pushed = 0
         for paper in all_papers:
-            # CRITICAL FIX: Rename columns with zero-padding (01, 02, ... 20)
-            # Without zero-padding, Apify sorts alphabetically: "10_*" before "1_*" before "2_*"
-            # With zero-padding (01-20), table displays in correct numerical order
-            padded_paper = {}
-            for key, value in paper.items():
-                # Extract column number and name (e.g., "1_ID" → 01, "ID")
-                if key[0].isdigit() and '_' in key:
-                    parts = key.split('_', 1)
-                    try:
-                        col_num = int(parts[0])
-                        col_name = parts[1]
-                        # Rename with zero-padding: "1_ID" → "01_ID", "20_Implementation" → "20_Implementation"
-                        new_key = f"{col_num:02d}_{col_name}"
-                        padded_paper[new_key] = value
-                    except (ValueError, IndexError):
-                        padded_paper[key] = value
-                else:
-                    padded_paper[key] = value
-            
-            await dataset.push_data(padded_paper)
+            # Data already zero-padded in JSON, push directly
+            await dataset.push_data(paper)
             papers_pushed += 1
             
             # Log format: [ID] Title (Year)
-            title_short = paper["2_Title"][:60] if "2_Title" in paper else "Unknown"
-            paper_id = paper.get("1_ID", f"P{papers_pushed:03d}")
-            year = paper.get("3_Year", "????")
+            title_short = paper.get("02_Title", "Unknown")[:60]
+            paper_id = paper.get("01_ID", f"P{papers_pushed:03d}")
+            year = paper.get("03_Year", "????")
             Actor.log.info(f"✅ [{paper_id}] {title_short} ({year})")
         
         # Summary
@@ -72,8 +54,8 @@ async def main():
         Actor.log.info(f"   08. Abstract | 09. Keywords | 10. Threat_Model | 11. Security_Goals | 12. Assumptions_Limitations")
         Actor.log.info(f"   13. Concept_1 | 14. Concept_2 | 15. Concept_3 | 16. Concept_4 | 17. Concept_5")
         Actor.log.info(f"   18. Proofs | 19. Experiments | 20. Implementation")
-        Actor.log.info(f"\n✅ FIX: Zero-padded column names (01_ID, 02_Title, etc.)")
-        Actor.log.info(f"✅ RESULT: Apify table now displays columns in correct numerical order 01→20")
+        Actor.log.info(f"\n✅ FIX APPLIED: Zero-padded column names (01_ID, 02_Title, ... 20_Implementation)")
+        Actor.log.info(f"✅ RESULT: Apify table now displays columns in CORRECT NUMERICAL ORDER 01→20")
         Actor.log.info(f"✅ OUTPUT FORMAT: Apify Dataset (JSON/CSV Export)")
         Actor.log.info(f"✅ STATUS: PRODUCTION READY")
         Actor.log.info("=" * 100)
