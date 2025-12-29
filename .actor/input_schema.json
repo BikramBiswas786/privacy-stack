@@ -1,6 +1,6 @@
 {
   "title": "Privacy Stack - Ultimate Privacy Project Scraper",
-  "description": "Scrape privacy projects, papers, implementations across GitHub, arXiv, Reddit, Twitter, HackerNews.",
+  "description": "Scrape privacy projects, papers, implementations across GitHub and arXiv",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
@@ -11,7 +11,7 @@
       "editor": "select",
       "items": {
         "type": "string",
-        "enum": ["github", "arxiv", "reddit", "hackernews", "twitter"]
+        "enum": ["github", "arxiv"]
       },
       "default": ["github", "arxiv"],
       "description": "Select which platforms to scrape for privacy projects"
@@ -24,30 +24,8 @@
         "type": "string",
         "enum": ["mixnet", "zk-proof", "tor", "nym", "monero", "zcash", "signal", "coinjoin", "mpc", "fhe"]
       },
-      "default": ["mixnet", "zk-proof", "tor"],
+      "default": ["mixnet", "zk-proof"],
       "description": "Select privacy keywords to search"
-    },
-    "starsMin": {
-      "title": "Minimum GitHub Stars",
-      "type": "integer",
-      "default": 50,
-      "minimum": 0,
-      "description": "Only return projects with at least this many stars"
-    },
-    "updatedDays": {
-      "title": "Updated in Last N Days",
-      "type": "integer",
-      "default": 90,
-      "minimum": 1,
-      "description": "Only return recently active projects"
-    },
-    "language": {
-      "title": "Programming Language",
-      "type": "string",
-      "editor": "select",
-      "enum": ["Python", "Rust", "Go", "JavaScript", "Haskell", "C++", "All"],
-      "default": "All",
-      "description": "Filter by primary language"
     },
     "maxResults": {
       "title": "Max Results",
@@ -56,12 +34,6 @@
       "minimum": 10,
       "maximum": 500,
       "description": "Maximum projects to return"
-    },
-    "includeMetadata": {
-      "title": "Include Metadata",
-      "type": "boolean",
-      "default": true,
-      "description": "Include threat models, paper links, benchmarks"
     }
   },
   "required": ["keywords"]
