@@ -1,4 +1,3 @@
-cat > .actor/actor.json << 'EOF'
 {
   "actorSpecification": 1,
   "name": "privacy-stack",
@@ -16,5 +15,3 @@ cat > .actor/actor.json << 'EOF'
   },
   "readme": "../README.md"
 }
-EOF
-cat .actor/actor.json
