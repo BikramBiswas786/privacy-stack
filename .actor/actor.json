@@ -1,16 +1,10 @@
 {
-  "actorOutputSchemaVersion": 1,
-  "title": "Privacy Stack - 5000 arXiv Privacy Papers",
-  "properties": {
-    "allPapers": {
-      "type": "string",
-      "title": "📚 All Papers",
-      "template": "{{links.apiDefaultDatasetUrl}}/items"
-    },
-    "runLog": {
-      "type": "string",
-      "title": "📋 Live Logs", 
-      "template": "{{links.consoleRunUrl}}/log"
-    }
-  }
+  "name": "privacy-stack-research-scraper",
+  "title": "Privacy Stack: 5000 REAL arXiv Privacy Papers",
+  "description": "Scrapes 5000+ unique arXiv cs.CR privacy papers across 4 categories. 100% real, no duplicates, production-ready dataset.",
+  "version": "2.0.0",
+  "type": "python",
+  "entrypoint": "src/main.py",
+  "actorSpecification": 1,
+  "output": "./output_schema.json"
 }
