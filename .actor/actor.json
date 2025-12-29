@@ -1,7 +1,7 @@
 {
   "name": "privacy-stack-research-scraper",
   "title": "Privacy Stack: 5000 REAL arXiv Privacy Papers",
-  "description": "Scrapes 5000+ unique arXiv cs.CR privacy papers across 4 categories. 100% real, no duplicates, production-ready dataset.",
+  "description": "Scrapes 5000+ unique arXiv cs.CR privacy papers across 4 categories. 100% real, no duplicates!",
   "version": "2.0.0",
   "type": "python",
   "entrypoint": "src/main.py",
