@@ -1,9 +1,16 @@
 {
-  "name": "privacy-stack-research-scraper",
-  "title": "Privacy & Anonymity Research Papers Scraper",
-  "description": "Scrapes 50+ privacy papers - v2.0 WORKING!",
-  "version": "2.0.0",
-  "type": "python",
-  "entrypoint": "src/main.py",
-  "actorSpecification": 1
+  "actorOutputSchemaVersion": 1,
+  "title": "Privacy Stack - 5000 arXiv Privacy Papers",
+  "properties": {
+    "allPapers": {
+      "type": "string",
+      "title": "📚 All Papers",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    },
+    "runLog": {
+      "type": "string",
+      "title": "📋 Live Logs", 
+      "template": "{{links.consoleRunUrl}}/log"
+    }
+  }
 }
