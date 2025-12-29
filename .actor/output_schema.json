@@ -3,40 +3,40 @@
   "title": "Privacy Stack - 5000 arXiv Privacy Papers",
   "description": "5000 REAL unique arXiv papers across 4 privacy categories (Internet, Crypto, Data, Post-Quantum)",
   "properties": {
-    "arxivPapers": {
+    "allPapers": {
       "type": "string",
-      "title": "📚 arXiv Papers Dataset",
-      "description": "5000 unique privacy research papers with URLs, authors, summaries",
+      "title": "📚 All Papers (5000 total)",
+      "description": "Complete dataset of 5000 unique privacy research papers",
       "template": "{{links.apiDefaultDatasetUrl}}/items"
     },
     "internetPrivacy": {
       "type": "string",
       "title": "🌐 Internet Privacy (1250 papers)",
-      "description": "Tor, mixnets, anonymous routing papers",
-      "template": "{{links.apiDefaultDatasetUrl}}/items?format=json&cleanLabels=true"
+      "description": "Tor, mixnets, anonymous routing, I2P papers",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
     },
     "cryptoPrivacy": {
       "type": "string",
-      "title": "🔐 Cryptographic Privacy (1250 papers)",
-      "description": "ZK, FHE, MPC research papers",
-      "template": "{{links.apiDefaultDatasetUrl}}/items?format=json&cleanLabels=true"
+      "title": "🔐 Crypto Privacy (1250 papers)",
+      "description": "ZK proofs, FHE, MPC, Bulletproofs papers",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
     },
     "dataPrivacy": {
       "type": "string",
       "title": "📊 Data Privacy (1250 papers)",
       "description": "Differential Privacy, Federated Learning papers",
-      "template": "{{links.apiDefaultDatasetUrl}}/items?format=json&cleanLabels=true"
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
     },
     "postQuantum": {
       "type": "string",
-      "title": "⚛️ Post-Quantum Privacy (1250 papers)",
-      "description": "Kyber, Dilithium, lattice crypto papers",
-      "template": "{{links.apiDefaultDatasetUrl}}/items?format=json&cleanLabels=true"
+      "title": "⚛️ Post-Quantum (1250 papers)",
+      "description": "Kyber, Dilithium, SPHINCS+, Falcon papers",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
     },
     "runLog": {
       "type": "string",
-      "title": "📋 Run Log",
-      "description": "Detailed scraping log with statistics",
+      "title": "📋 Live Logs",
+      "description": "Real-time scraping progress and statistics",
       "template": "{{links.consoleRunUrl}}/log"
     }
   }
