@@ -1,88 +1,71 @@
+import asyncio
 from apify import Actor
-import json
 
-def main():
-    print("🚀 Privacy Stack v20: TOP 5 REAL arXiv cs.CR → DATASET!")
+async def main():
+    print("🚀 Privacy Stack v21: LIMITED_PERMISSIONS FIXED!")
     
-    # TOP 5 REAL PAPERS from your arXiv attachment
-    real_papers = [
+    # TOP 5 REAL arXiv cs.CR papers
+    papers = [
         {
             "id": 1,
             "arxiv_id": "2511.15517",
             "title": "Beluga: Block Synchronization for BFT Consensus Protocols",
-            "authors": "Tasos Kichidis, Lefteris Kokoris-Kogias, Arun Koshy, Ilya Sergey, Alberto Sonnino",
-            "subjects": "Cryptography and Security (cs.CR); Distributed, Parallel, and Cluster Computing (cs.DC)",
+            "authors": "Tasos Kichidis et al.",
             "url": "https://arxiv.org/abs/2511.15517",
             "pdf_url": "https://arxiv.org/pdf/2511.15517.pdf",
-            "source": "arXiv cs.CR/recent",
-            "category": "cryptography",
-            "published": "2025-11-20"
+            "category": "cryptography"
         },
         {
             "id": 2,
-            "arxiv_id": "2511.15479",
-            "title": "Towards a Formal Verification of Secure Vehicle Software Updates",
-            "authors": "Martin Slind Hagen, Emil Lundqvist, Alex Phu, Yenan Wang, Kim Strandberg",
-            "subjects": "Cryptography and Security (cs.CR); Distributed, Parallel, and Cluster Computing (cs.DC); Logic in Computer Science (cs.LO)",
+            "arxiv_id": "2511.15479", 
+            "title": "Secure Vehicle Software Updates Verification",
+            "authors": "Martin Slind Hagen et al.",
             "url": "https://arxiv.org/abs/2511.15479",
             "pdf_url": "https://arxiv.org/pdf/2511.15479.pdf",
-            "source": "arXiv cs.CR/recent",
-            "category": "cryptography",
-            "published": "2025-11-20"
+            "category": "cryptography"
         },
         {
             "id": 3,
             "arxiv_id": "2511.15463",
-            "title": "How To Cook The Fragmented Rug Pull?",
-            "authors": "Minh Trung Tran, Nasrin Sohrabi, Zahir Tari, Qin Wang",
-            "subjects": "Cryptography and Security (cs.CR); Computational Engineering, Finance, and Science (cs.CE)",
+            "title": "Fragmented Rug Pull Analysis",
+            "authors": "Minh Trung Tran et al.",
             "url": "https://arxiv.org/abs/2511.15463",
             "pdf_url": "https://arxiv.org/pdf/2511.15463.pdf",
-            "source": "arXiv cs.CR/recent",
-            "category": "cryptography",
-            "published": "2025-11-20"
+            "category": "cryptography"
         },
         {
             "id": 4,
             "arxiv_id": "2511.15434",
-            "title": "Small Language Models for Phishing Website Detection: Cost, Performance, and Privacy Trade-Offs",
-            "authors": "Georg Goldenits, Philip Koenig, Sebastian Raubitzek, Andreas Ekelhart",
-            "subjects": "Cryptography and Security (cs.CR); Artificial Intelligence (cs.AI)",
+            "title": "Phishing Detection with Small Language Models",
+            "authors": "Georg Goldenits et al.",
             "url": "https://arxiv.org/abs/2511.15434",
             "pdf_url": "https://arxiv.org/pdf/2511.15434.pdf",
-            "source": "arXiv cs.CR/recent",
-            "category": "privacy",
-            "published": "2025-11-20"
+            "category": "privacy"
         },
         {
             "id": 5,
             "arxiv_id": "2511.15278",
-            "title": "Privacy-Preserving IoT in Connected Aircraft Cabin",
-            "authors": "Nilesh Vyas, Benjamin Zhao, Aygün Baltaci, Gustavo de Carvalho Bertoli, Hassan Asghar",
-            "subjects": "Cryptography and Security (cs.CR); Distributed, Parallel, and Cluster Computing (cs.DC); Networking and Internet Architecture (cs.NI)",
+            "title": "Privacy-Preserving IoT in Aircraft Cabin",
+            "authors": "Nilesh Vyas et al.",
             "url": "https://arxiv.org/abs/2511.15278",
             "pdf_url": "https://arxiv.org/pdf/2511.15278.pdf",
-            "source": "arXiv cs.CR/recent",
-            "category": "privacy",
-            "published": "2025-11-20"
+            "category": "privacy"
         }
     ]
     
-    print(f"📚 TOP 5 REAL arXiv cs.CR papers extracted!")
+    print(f"📚 5 REAL arXiv cs.CR papers ready!")
     
-    # 🔥 FORCE DATASET OUTPUT - ONE BY ONE (GUARANTEED!)
-    for i, paper in enumerate(real_papers, 1):
-        Actor.push_data(paper)
-        print(f"✅ #{i}: {paper['title'][:60]}...")
+    # 🔥 LIMITED_PERMISSIONS REQUIRES: async with Actor:
+    for paper in papers:
+        await Actor.push_data(paper)
+        print(f"✅ Pushed: {paper['title'][:50]}...")
     
-    # 🔥 FILES BACKUP
-    with open("top5_privacy_papers.json", "w") as f:
-        json.dump(real_papers, f, indent=2)
-    
-    print("\n🎉 SUCCESS!")
-    print("📊 DATASET: 5 papers ✓")
-    print("📄 FILES: top5_privacy_papers.json ✓")
-    print("🏆 Privacy Stack v20 COMPLETE!")
+    print("🎉 DATASET FILLED! Check Storage → Dataset tab!")
+
+# CRITICAL: async with Actor: INITIALIZATION
+async def run():
+    async with Actor:
+        await main()
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(run())
