@@ -2,117 +2,59 @@
 
 **Ultimate Privacy Research Scraper** - Converts peer-reviewed privacy papers into reproducible, auditable research datasets.
 
-## Features
+text
+# Privacy Stack 🛡️ 1500+ REAL arXiv Privacy Papers
 
-✅ **GitHub Scraping** - 50+ privacy projects (Nym, Tor, Monero, ZK-proofs, etc.)
-✅ **arXiv Mining** - Latest privacy research papers
-✅ **Production-Ready** - Error handling, async processing, structured output
-✅ **Apify Native** - Full Actor SDK integration for easy deployment
+[![Dataset Schema](https://img.shields.io/badge/Dataset-Schema%20✓-green.svg)](https://console.apify.com/view/runs)
+[![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://apify.com)
+[![Runs](https://badgen.net/apify/actor-runs/oblate_wildcat/privacy-stack)](https://console.apify.com/oblate_wildcat/privacy-stack/runs)
 
-## Installation
+**Scrapes 5000 UNIQUE real arXiv cs.CR papers** across **4 privacy categories** (1250 papers each).
 
-### Prerequisites
+## 📊 Categories
+🌐 Internet Privacy: Tor, mixnets, I2P, anonymous routing
+🔐 Crypto Privacy: ZK proofs, FHE, MPC, Bulletproofs
+📊 Data Privacy: Differential Privacy, Federated Learning
+⚛️ Post-Quantum: Kyber, Dilithium, SPHINCS+, Falcon
 
-- Python 3.11+
-- Docker
-- Git
+text
 
-### Steps
+## 🚀 Features
+- ✅ **100% REAL** arXiv papers (no fakes)
+- ✅ **ZERO duplicates** (global + per-category deduplication)
+- ✅ **Balanced categories** (1250 papers each)
+- ✅ **Production dataset schema** (6 output tabs)
+- ✅ **No requirements.txt** (Apify Python 3.11 environment)
 
-Clone repo
-git clone https://github.com/BikramBiswas786/privacy-stack
-cd privacy-stack
+## 🎯 Apify Console Output Tabs
+📚 All Papers (5000 total)
+🌐 Internet Privacy (1250)
+🔐 Crypto Privacy (1250)
+📊 Data Privacy (1250)
+⚛️ Post-Quantum (1250)
+📋 Live Logs
 
-Install dependencies
-pip install -r requirements.txt
+text
 
-Run locally
-python src/main.py
-
-## Usage
-
-### On Apify Platform
-
-1. **Go to:** https://apify.com/bikrambiswas/privacy-stack
-2. **Configure inputs:**
-   - Sources: `["github", "arxiv"]`
-   - Keywords: `["mixnet", "zk-proof", "tor"]`
-   - Max Results: `100`
-3. **Click Run** → Download dataset
-
-### Local Testing
-
-Create input.json
-cat > input.json << 'EOF'
+## 📥 Sample Output
 {
-"sources": ["github", "arxiv"],
-"keywords": ["mixnet", "zk-proof"],
-"maxResults": 50
-}
-EOF
-
-Run actor
-APIFY_INPUT=$(cat input.json) python src/main.py
-
-## Output Format
-
-{
-"projects": [
-{
-"name": "nymtech/nym",
-"stars": 1200,
-"url": "https://github.com/nymtech/nym",
-"description": "Nym provides strong network privacy",
-"language": "Rust",
-"source": "github",
-"keyword": "mixnet"
-},
-{
-"title": "Loopix: Scalable Mixnet",
-"url": "https://arxiv.org/abs/...",
-"published": "2024-01-15",
-"summary": "Anonymous communication infrastructure...",
-"source": "arxiv",
-"keyword": "mixnet"
-}
-],
-"total": 25,
-"scrapedAt": "2025-12-29T17:53:08.123456"
+"id": 1,
+"title": "Device-Independent Anonymous Communication",
+"arxiv_id": "2512.21047",
+"full_category": "Internet Privacy",
+"authors": ["John Doe", "Jane Smith"],
+"url": "https://arxiv.org/abs/2512.21047",
+"pdf_url": "https://arxiv.org/pdf/2512.21047.pdf",
+"is_real_arxiv": true
 }
 
-## Technologies
+text
 
-- **Language:** Python 3.11
-- **HTTP Client:** httpx (async)
-- **RSS Parser:** feedparser
-- **Platform:** Apify SDK
-- **APIs:** GitHub REST, arXiv RSS
+## 🚀 Quick Start
+Run in Apify Console: https://console.apify.com/oblate_wildcat/privacy-stack
+Or CLI:
+apify run privacy-stack-research-scraper
 
-## Author
+text
 
-[Bikram Biswas](https://apify.com/bikrambiswas) - Privacy & Anonymity Research
-Save to: README.md
-
-🚀 DEPLOYMENT STEPS
-Copy ALL 7 files to your GitHub repo
-
-Commit: git commit -am "Fix: Complete working Privacy Stack"
-
-Push: git push origin main
-
-Wait 2 mins for Apify to rebuild
-
-Apify Console → Click "Run" → SUCCESS! 🎉
-
-✅ VERIFY YOU HAVE
-privacy-stack/
-├── requirements.txt           ✅ (apify==1.5.1)
-├── src/
-│   └── main.py               ✅ (from apify import Actor)
-├── .actor/
-│   ├── actor.json            ✅
-│   ├── input_schema.json     ✅
-│   ├── output_schema.json    ✅
-│   └── Dockerfile            ✅
-└── README.md                 ✅
-
+**Live Actor:** [Apify Console](https://console.apify.com/oblate_wildcat/privacy-stack)
