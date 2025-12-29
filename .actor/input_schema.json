@@ -19,10 +19,10 @@
     "keywords": {
       "title": "Privacy Keywords",
       "type": "array",
-      "editor": "textarea",
+      "editor": "select",
       "items": {"type": "string"},
-      "default": ["mixnet", "zk-proof", "tor", "nym", "monero", "zcash", "signal", "coinjoin", "mpc", "fhe"],
-      "description": "Keywords to search (mixnet, zk, tor, nym, monero, zcash, signal, coinjoin, mpc, fhe, etc)"
+      "default": ["mixnet", "zk-proof", "tor", "nym", "monero"],
+      "description": "Keywords to search (mixnet, zk-proof, tor, nym, monero, zcash, signal, coinjoin, mpc, fhe)"
     },
     "starsMin": {
       "title": "Minimum GitHub Stars",
@@ -36,7 +36,7 @@
       "type": "integer",
       "default": 90,
       "minimum": 1,
-      "description": "Only return recently active projects (0 = all time)"
+      "description": "Only return recently active projects"
     },
     "language": {
       "title": "Programming Language",
@@ -58,7 +58,7 @@
       "title": "Include Metadata",
       "type": "boolean",
       "default": true,
-      "description": "Include threat models, paper links, benchmarks, funding info"
+      "description": "Include threat models, paper links, benchmarks"
     }
   },
   "required": ["keywords"]
