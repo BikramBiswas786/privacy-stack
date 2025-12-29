@@ -1,0 +1,47 @@
+cat > .actor/output_schema.json << 'EOF'
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Privacy Stack Output",
+  "description": "Privacy projects, papers, implementations extracted from multiple sources",
+  "type": "object",
+  "properties": {
+    "allProjects": {
+      "type": "string",
+      "title": "🚀 All Privacy Projects",
+      "description": "Complete list of privacy projects found",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    },
+    "topStars": {
+      "type": "string",
+      "title": "⭐ 100+ Stars Projects",
+      "description": "High-quality privacy projects with 100+ GitHub stars",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?view=topStars"
+    },
+    "rustProjects": {
+      "type": "string",
+      "title": "🦀 Rust Privacy Projects",
+      "description": "Privacy implementations in Rust",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?language=Rust"
+    },
+    "pythonProjects": {
+      "type": "string",
+      "title": "🐍 Python Privacy Projects",
+      "description": "Privacy implementations in Python",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?language=Python"
+    },
+    "paperImplementations": {
+      "type": "string",
+      "title": "📚 Paper Implementations",
+      "description": "Projects with arXiv/paper references",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/keys?collection=papers"
+    },
+    "activeDevelopment": {
+      "type": "string",
+      "title": "🔥 Active Development",
+      "description": "Projects updated in last 30 days",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?view=active"
+    }
+  }
+}
+EOF
+cat .actor/output_schema.json
