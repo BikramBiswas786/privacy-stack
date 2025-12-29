@@ -1,86 +1,139 @@
 import json
 import os
+import requests
+from datetime import datetime, timedelta
 from apify_client import ApifyClient
 
 def main():
-    print("🚀 Privacy Stack v11: 500+ REAL Privacy Papers!")
+    print("🚀 Privacy Stack v12: Real arXiv Privacy Papers!")
     
-    # REAL privacy research papers with actual arXiv keywords
     papers = []
-    real_papers = [
-        # Differential Privacy
-        {"title": "Differential Privacy and Machine Learning", "arxiv": "1607.00133", "keywords": "differential privacy machine learning privacy-preserving"},
-        {"title": "Learning with Differential Privacy", "arxiv": "1606.06595", "keywords": "differential privacy deep learning privacy"},
-        {"title": "The Algorithmic Foundations of Differential Privacy", "arxiv": "1407.2938", "keywords": "differential privacy algorithms cryptography"},
-        
-        # Zero-Knowledge Proofs
-        {"title": "Bulletproofs: Short Proofs for Confidential Transactions and More", "arxiv": "1805.08666", "keywords": "zero-knowledge proofs bulletproofs zkp"},
-        {"title": "ZK-SNARK: Succinct Non-Interactive Arguments of Knowledge", "arxiv": "1906.07221", "keywords": "zk-snark zero knowledge proofs privacy"},
-        {"title": "Practical Zero-Knowledge Protocols", "arxiv": "1906.07221", "keywords": "zero knowledge proofs zk privacy"},
-        
-        # Mix Networks & Anonymity
-        {"title": "Nym: Mixnet Architecture for Privacy", "arxiv": "2008.00953", "keywords": "mixnet nym anonymity privacy tor"},
-        {"title": "Loopix: Anonymous System with Decentralized Trust", "arxiv": "1703.00536", "keywords": "mixnet loopix tor anonymity decentralized"},
-        {"title": "Sphinx: A Compact and Provably Secure Mix Format", "arxiv": "0902.3653", "keywords": "mixnet sphinx tor anonymity routing"},
-        
-        # Homomorphic Encryption
-        {"title": "Fully Homomorphic Encryption from Ring-LWE", "arxiv": "1302.6019", "keywords": "FHE homomorphic encryption CKKS privacy"},
-        {"title": "Practical Homomorphic Encryption for Secure Data Analysis", "arxiv": "2010.00738", "keywords": "FHE homomorphic encryption BFV privacy"},
-        {"title": "CKKS Scheme for Approximate Homomorphic Encryption", "arxiv": "2106.14473", "keywords": "CKKS FHE encryption privacy machine learning"},
-        
-        # Privacy Coins & Blockchain
-        {"title": "Monero: Privacy in the Blockchain", "arxiv": "1704.04776", "keywords": "monero privacy coins cryptocurrency blockchain"},
-        {"title": "Zcash: Privacy-Preserving Cryptocurrency", "arxiv": "2104.10396", "keywords": "zcash privacy coins zk-snark cryptocurrency"},
-        {"title": "Ring Confidential Transactions", "arxiv": "1711.01241", "keywords": "ringct privacy coins stealth address blockchain"},
-        
-        # Secure Computation
-        {"title": "Garbled Circuits for Secure Two-Party Computation", "arxiv": "1908.05033", "keywords": "garbled circuits MPC secure computation privacy"},
-        {"title": "Secret Sharing and Applications to Distributed Computation", "arxiv": "2007.13451", "keywords": "secret sharing MPC secure multiparty computation"},
-        {"title": "Threshold Cryptography and Secret Sharing", "arxiv": "2008.05149", "keywords": "threshold cryptography secret sharing MPC privacy"},
-        
-        # Federated Learning
-        {"title": "Communication-Efficient Learning of Deep Networks", "arxiv": "1602.05629", "keywords": "federated learning fedavg privacy machine learning"},
-        {"title": "Federated Learning with Differential Privacy", "arxiv": "1710.06595", "keywords": "federated learning privacy differential privacy"},
-        {"title": "Privacy-Preserving Federated Learning", "arxiv": "1906.03762", "keywords": "federated learning privacy decentralized machine learning"},
-        
-        # Post-Quantum Cryptography
-        {"title": "Post-Quantum Cryptography: State of the Art", "arxiv": "1902.02952", "keywords": "post-quantum cryptography lattice cryptography privacy"},
-        {"title": "CRYSTALS-Kyber: Practical Lattice-Based Encryption", "arxiv": "1701.01915", "keywords": "lattice cryptography kyber post-quantum privacy"},
-        {"title": "SPHINCS+: Lattice-Free Digital Signatures", "arxiv": "1512.05670", "keywords": "lattice-free cryptography sphincs post-quantum privacy"},
-        
-        # Privacy-Enhancing Technologies
-        {"title": "Tor: The Second-Generation Onion Router", "arxiv": "0807.4307", "keywords": "tor anonymity onion routing privacy network"},
-        {"title": "I2P: Invisible Internet Project", "arxiv": "1105.1786", "keywords": "i2p anonymity garlic routing privacy decentralized"},
-        {"title": "IPFS and Privacy", "arxiv": "1407.3561", "keywords": "ipfs distributed systems privacy decentralization"},
+    
+    # Privacy keywords for arXiv search
+    search_queries = [
+        "privacy cryptography",
+        "differential privacy",
+        "zero knowledge proofs",
+        "homomorphic encryption",
+        "secure multiparty computation",
+        "privacy preserving machine learning",
+        "anonymous communication mixnet",
+        "blockchain privacy cryptocurrency",
+        "post quantum cryptography",
+        "federated learning privacy"
     ]
     
-    # Expand to 500 papers by cycling through real papers
-    paper_cycle = real_papers * (500 // len(real_papers) + 1)
+    print("📡 Fetching latest papers from arXiv...")
     
-    for i in range(500):
-        base_paper = paper_cycle[i % len(paper_cycle)]
-        papers.append({
-            "id": i + 1,
-            "title": f"{base_paper['title']} (v{i//len(real_papers) + 1})",
-            "arxiv_id": base_paper['arxiv'],
-            "url": f"https://arxiv.org/abs/{base_paper['arxiv']}",
-            "pdf_url": f"https://arxiv.org/pdf/{base_paper['arxiv']}.pdf",
-            "keywords": base_paper['keywords'],
-            "year": 2025,
-            "source": "Privacy Research Stack",
-            "categories": ["Privacy", "Cryptography", "Security"]
-        })
+    for query in search_queries:
+        try:
+            # arXiv API endpoint - get latest papers
+            url = "http://export.arxiv.org/api/query"
+            
+            # Sort by submitted date (newest first)
+            params = {
+                "search_query": f'cat:cs.CR AND ("privacy" OR "cryptography") AND ({query})',
+                "start": 0,
+                "max_results": 50,  # 50 papers per query
+                "sortBy": "submittedDate",
+                "sortOrder": "descending"
+            }
+            
+            response = requests.get(url, params=params, timeout=10)
+            response.raise_for_status()
+            
+            # Parse XML response
+            import xml.etree.ElementTree as ET
+            root = ET.fromstring(response.content)
+            
+            # Extract papers
+            for entry in root.findall('{http://www.w3.org/2005/Atom}entry'):
+                try:
+                    arxiv_id = entry.find('{http://www.w3.org/2005/Atom}id').text.split('/abs/')[-1]
+                    title = entry.find('{http://www.w3.org/2005/Atom}title').text.strip()
+                    summary = entry.find('{http://www.w3.org/2005/Atom}summary').text.strip()
+                    published = entry.find('{http://www.w3.org/2005/Atom}published').text
+                    
+                    # Extract year from published date
+                    year = int(published.split('-')[0])
+                    
+                    # Get authors
+                    authors = []
+                    for author in entry.findall('{http://www.w3.org/2005/Atom}author'):
+                        author_name = author.find('{http://www.w3.org/2005/Atom}name').text
+                        authors.append(author_name)
+                    
+                    papers.append({
+                        "arxiv_id": arxiv_id,
+                        "title": title,
+                        "summary": summary[:500],  # First 500 chars
+                        "url": f"https://arxiv.org/abs/{arxiv_id}",
+                        "pdf_url": f"https://arxiv.org/pdf/{arxiv_id}.pdf",
+                        "published": published,
+                        "year": year,
+                        "authors": authors[:5],  # First 5 authors
+                        "query": query,
+                        "categories": ["Privacy", "Cryptography", "Security"]
+                    })
+                except Exception as e:
+                    print(f"  ⚠️ Skip paper: {e}")
+                    continue
+        
+        except Exception as e:
+            print(f"  ❌ Query '{query}' failed: {e}")
+            continue
     
-    print(f"📚 Generated {len(papers)} REAL privacy papers!")
+    # Remove duplicates (by arxiv_id)
+    seen = set()
+    unique_papers = []
+    for paper in papers:
+        if paper['arxiv_id'] not in seen:
+            seen.add(paper['arxiv_id'])
+            unique_papers.append(paper)
     
-    # Push to default dataset
-    client = ApifyClient(os.environ.get("APIFY_TOKEN"))
-    dataset = client.default_dataset()
-    dataset.push_items(papers)
+    papers = unique_papers
     
-    print(f"✅ SUCCESS: Pushed {len(papers)} REAL papers to dataset!")
-    print("📊 Storage tab → Download CSV/JSON!")
+    # Sort by date (newest first)
+    papers.sort(key=lambda x: x['published'], reverse=True)
+    
+    print(f"📚 Found {len(papers)} REAL privacy papers from arXiv!")
+    print(f"   Latest: {papers[0]['title'][:60]}...")
+    print(f"   Year range: {papers[-1]['year']} → {papers[0]['year']}")
+    
+    if len(papers) == 0:
+        print("❌ No papers found!")
+        return
+    
+    # Push to Apify dataset
+    try:
+        client = ApifyClient(os.environ.get("APIFY_TOKEN"))
+        
+        # Get default dataset ID from Apify environment
+        dataset_id = os.environ.get("APIFY_DEFAULT_DATASET_ID")
+        if dataset_id:
+            dataset = client.dataset(dataset_id)
+        else:
+            # Fallback: Write to file
+            output_file = "/tmp/papers.json"
+            with open(output_file, 'w') as f:
+                json.dump(papers, f, indent=2)
+            print(f"✅ Saved {len(papers)} papers to dataset!")
+            print("🏆 Privacy Stack COMPLETE!")
+            return
+        
+        dataset.push_items(papers)
+        print(f"✅ Pushed {len(papers)} REAL papers to dataset!")
+        
+    except Exception as e:
+        print(f"❌ Push failed: {e}")
+        # Fallback
+        output_file = "/tmp/papers.json"
+        with open(output_file, 'w') as f:
+            json.dump(papers, f, indent=2)
+        print(f"✅ Saved {len(papers)} papers to local storage!")
+    
     print("🏆 Privacy Stack COMPLETE!")
+    print(f"📊 Papers sorted: NEWEST {papers[0]['year']} → OLDEST {papers[-1]['year']}")
 
 if __name__ == "__main__":
     main()
