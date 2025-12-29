@@ -1,40 +1,60 @@
 {
-  "title": "Privacy Stack - Ultimate Privacy Project Scraper",
-  "description": "Scrape privacy projects, papers, implementations across GitHub and arXiv",
+  "title": "Privacy Stack Research Scraper Input",
+  "description": "Input configuration for scraping privacy and anonymity research papers",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
     "sources": {
-      "sectionCaption": "Data Sources",
-      "title": "Sources to Scrape",
+      "title": "Research Paper Sources",
+      "description": "List of sources and starting URLs to scrape",
       "type": "array",
-      "editor": "select",
-      "items": {
-        "type": "string",
-        "enum": ["github", "arxiv"]
-      },
-      "default": ["github", "arxiv"],
-      "description": "Select which platforms to scrape for privacy projects"
+      "editor": "json",
+      "default": [
+        {
+          "name": "arXiv Privacy",
+          "url": "https://arxiv.org/list/cs.CR/recent",
+          "category": "cryptography"
+        },
+        {
+          "name": "ACM CCS",
+          "url": "https://www.sigsac.org/ccs/",
+          "category": "security"
+        },
+        {
+          "name": "IEEE S&P",
+          "url": "https://www.ieee-security.org/",
+          "category": "privacy"
+        }
+      ]
     },
-    "keywords": {
-      "title": "Privacy Keywords",
-      "type": "array",
-      "editor": "select",
-      "items": {
-        "type": "string",
-        "enum": ["mixnet", "zk-proof", "tor", "nym", "monero", "zcash", "signal", "coinjoin", "mpc", "fhe"]
-      },
-      "default": ["mixnet", "zk-proof"],
-      "description": "Select privacy keywords to search"
-    },
-    "maxResults": {
-      "title": "Max Results",
+    "maxPapersPerSource": {
+      "title": "Max Papers Per Source",
+      "description": "Maximum number of papers to extract from each source",
       "type": "integer",
-      "default": 100,
-      "minimum": 10,
+      "minimum": 1,
       "maximum": 500,
-      "description": "Maximum projects to return"
+      "default": 50
+    },
+    "includeImplementations": {
+      "title": "Include Code Implementations",
+      "description": "Whether to extract and include Python implementations if available",
+      "type": "boolean",
+      "default": true
+    },
+    "extractAbstracts": {
+      "title": "Extract Abstracts",
+      "description": "Extract paper abstracts and key concepts",
+      "type": "boolean",
+      "default": true
+    },
+    "timeout": {
+      "title": "Request Timeout (seconds)",
+      "description": "Timeout for HTTP requests in seconds",
+      "type": "integer",
+      "minimum": 5,
+      "maximum": 120,
+      "default": 30
     }
   },
-  "required": ["keywords"]
+  "required": ["sources"]
 }
