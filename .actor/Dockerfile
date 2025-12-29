@@ -1,9 +1,17 @@
-FROM apify/actor-python:latest
+cat > Dockerfile << 'EOF'
+FROM python:3.11-slim
 
-COPY . /usr/src/app
-WORKDIR /usr/src/app
+WORKDIR /app
 
-RUN echo "CACHE_BUST_$(date +%s)" > /tmp/cache_bust.txt
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "src/main.py"]
+# Copy source code
+COPY . .
+
+# Run the actor
+CMD ["python", "-m", "apify", "start"]
+EOF
+cat Dockerfile
 
