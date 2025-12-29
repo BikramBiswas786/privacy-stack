@@ -5,13 +5,11 @@
   "version": "1.0.0",
   "type": "nodejs",
   "entrypoint": "./src/main.js",
-  "actorSpecification": 2,
+  "actorSpecification": 1,
   "input": "./actor/input_schema.json",
   "output": "./actor/output_schema.json",
   "metadata": {
-    "categories": ["scrapers", "research", "privacy"],
-    "documentationUrl": "https://github.com/BikramBiswas786/privacy-stack",
-    "sourceUrl": "https://github.com/BikramBiswas786/privacy-stack"
+    "categories": ["scrapers", "research", "privacy"]
   },
   "build": {
     "base": "node:20-alpine"
@@ -20,8 +18,5 @@
     "dataset": {
       "maxItems": 1000
     }
-  },
-  "env": {
-    "APIFY_MAX_PAYLOAD_SIZE_BYTES": "52428800"
   }
 }
