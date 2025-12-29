@@ -13,7 +13,8 @@
         "type": "string",
         "enum": ["github", "arxiv", "reddit", "hackernews", "twitter"]
       },
-      "default": ["github", "arxiv"]
+      "default": ["github", "arxiv"],
+      "description": "Select which platforms to scrape for privacy projects"
     },
     "keywords": {
       "title": "Privacy Keywords",
@@ -30,32 +31,37 @@
       "title": "Minimum GitHub Stars",
       "type": "integer",
       "default": 50,
-      "minimum": 0
+      "minimum": 0,
+      "description": "Only return projects with at least this many stars"
     },
     "updatedDays": {
       "title": "Updated in Last N Days",
       "type": "integer",
       "default": 90,
-      "minimum": 1
+      "minimum": 1,
+      "description": "Only return recently active projects"
     },
     "language": {
       "title": "Programming Language",
       "type": "string",
       "editor": "select",
       "enum": ["Python", "Rust", "Go", "JavaScript", "Haskell", "C++", "All"],
-      "default": "All"
+      "default": "All",
+      "description": "Filter by primary language"
     },
     "maxResults": {
       "title": "Max Results",
       "type": "integer",
       "default": 100,
       "minimum": 10,
-      "maximum": 500
+      "maximum": 500,
+      "description": "Maximum projects to return"
     },
     "includeMetadata": {
       "title": "Include Metadata",
       "type": "boolean",
-      "default": true
+      "default": true,
+      "description": "Include threat models, paper links, benchmarks"
     }
   },
   "required": ["keywords"]
