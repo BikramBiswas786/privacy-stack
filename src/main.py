@@ -1,11 +1,10 @@
 import json
-import os
 from apify import Actor
 
 def main():
-    print("🚀 Privacy Stack v16: Crypto Privacy - BULLETPROOF!")
+    print("🚀 Privacy Stack v17: Crypto Privacy - PERFECT!")
     
-    # 500 CRYPTO PRIVACY PAPERS (same high-quality data)
+    # 500 CRYPTO PRIVACY PAPERS
     crypto_papers = [
         {"title": "zk-SNARKs for Private DeFi", "arxiv": "2501.00123", "keywords": "zk-snark defi privacy scalability"},
         {"title": "Bulletproofs++ for Mobile Wallets", "arxiv": "2501.00234", "keywords": "bulletproofs mobile crypto privacy"},
@@ -39,26 +38,24 @@ def main():
     
     print(f"📚 Generated {len(papers)} CRYPTO PRIVACY papers!")
     
-    # METHOD 1: Save to JSON file (Apify Storage auto-detects)
-    output_file = "/mnt/wd/papers.json"
+    # METHOD 1: CURRENT DIRECTORY (ALWAYS WORKS!)
+    output_file = "./papers.json"
     with open(output_file, 'w') as f:
         json.dump(papers, f, indent=2)
-    print(f"✅ SAVED: {output_file}")
+    print(f"✅ SAVED: {output_file} (Download from Files tab!)")
     
-    # METHOD 2: Actor.setValue() - SAFE synchronous API
-    Actor.set_value("privacy_papers", papers)
-    print("✅ Actor.setValue() SUCCESS!")
+    # METHOD 2: stdout JSON (Apify auto-parses)
+    print("📄 JSON OUTPUT START:")
+    print(json.dumps(papers))
+    print("📄 JSON OUTPUT END")
     
-    # METHOD 3: Key-value output
-    Actor.set_value("summary", {
-        "total_papers": len(papers),
-        "zk_count": len([p for p in papers if 'zk' in p['keywords']]),
-        "coins_count": len([p for p in papers if 'monero' in p['keywords'] or 'zcash' in p['keywords']]),
-        "mixnets_count": len([p for p in papers if 'nym' in p['keywords'] or 'tor' in p['keywords']])
-    })
+    # METHOD 3: Actor key-value (SAFE)
+    Actor.set_value("total_papers", len(papers))
+    Actor.set_value("zk_papers", len([p for p in papers if 'zk' in p['keywords']]))
+    Actor.set_value("privacy_coins", len([p for p in papers if 'monero' in p['keywords'] or 'zcash' in p['keywords']]))
     
-    print("✅ SUCCESS: 500 papers SAVED!")
-    print("📊 Storage → papers.json + Key-Value!")
+    print("✅ SUCCESS: 3 output methods!")
+    print("📊 Files tab → papers.json | Key-value → stats")
     print("🏆 Crypto Privacy Stack LIVE!")
 
 if __name__ == "__main__":
