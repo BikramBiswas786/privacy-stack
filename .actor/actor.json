@@ -1,8 +1,8 @@
 {
   "name": "privacy-stack-research-scraper",
   "title": "Privacy & Anonymity Research Papers Scraper",
-  "description": "Scrapes 50+ privacy papers - WORKING!",
-  "version": "1.0.0",
+  "description": "Scrapes 50+ privacy papers - v2.0 WORKING!",
+  "version": "2.0.0",  ← CHANGE FROM 1.0.0 → 2.0.0
   "type": "python",
   "entrypoint": "src/main.py",
   "actorSpecification": 1
