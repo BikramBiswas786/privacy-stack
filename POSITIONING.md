@@ -1,43 +1,64 @@
-# Anon Lab — Four Positioning Pillars
+# Privacy Stack - Positioning Statement
 
-## 1. Credibility First
-Every paper is citable and provenance is proven.
-- Every entry links to DOI or arXiv
-- Metadata verified by human reviewers
-- Verification log is public
-- Authors can endorse or correct
+## The Problem
 
-## 2. Pedagogy Second
-Outputs teach, not just show.
-- TL;DR for quick understanding
-- Learning objectives up front
-- Threat model explained visually
-- Exercises with answers
-- Real use cases
+Privacy builders today are **scattered across 10+ platforms** with no single source of truth:
+- GitHub has the code, but no papers
+- arXiv has the papers, but no implementations
+- Reddit has discussions, but no curated list
+- Twitter has trends, but no quality signal
+- No way to **discover emerging projects** or **benchmark threat models**
 
-## 3. Safety Always
-Cryptographic and legal safeguards are explicit.
-- Threat model documented for every paper
-- Security commentary in plain English
-- Limitations and known attacks listed
-- No hidden assumptions
-- Ethical use guidelines visible
+**Result:** Time wasted searching. Projects unknown. Papers without code. Silos.
 
-## 4. Open Collaboration
-Community review over closed automation.
-- Transparent reviewer roles
-- Public verification logs
-- Community contribution guidelines
-- Citation outreach to authors
-- Beta reviewer program
+## The Solution
 
----
+**Privacy Stack is the central hub** for privacy builders to:
+- 🔍 **Discover** 50+ active privacy projects (mixnets, ZK, Tor, crypto privacy)
+- 📚 **Find** peer-reviewed papers with working implementations
+- 🚀 **Track** emerging projects (updated <30 days)
+- ⭐ **Quality filter** (100+ stars, production-ready)
+- 💻 **Filter by language** (Rust, Python, Go, etc)
 
-## Tone & Persona
+## Target Audience
 
-Write like a lab that publishes reproducible artifacts and lab notes:
-- Authoritative but humble
-- Forensic (evidence-based)
-- Neutral, scholarly language
-- No marketing puffery
-- Conditional claims, not guarantees
+**Primary:** Privacy developers, security engineers, researchers
+- Want: curated list of projects in their domain
+- Pain: fragmented sources, outdated info
+- Win: "Show me all Rust mixnet projects updated this month"
+
+**Secondary:** Blockchain/crypto builders
+- Want: privacy implementations (coinjoin, stealth addresses, ring sigs)
+- Pain: scattered across Monero, Zcash, Cardano, Polkadot ecosystems
+- Win: "Show me all ZK projects with 100+ stars"
+
+**Tertiary:** Security auditors, researchers
+- Want: threat models, benchmarks, funding info
+- Pain: manual research across repos
+- Win: "Show me all papers with implementations"
+
+## Competitive Advantage
+
+| Feature | Privacy Stack | GitHub Search | arXiv | Reddit |
+|---------|---------------|---------------|-------|--------|
+| Papers + Code | ✅ | ❌ | ❌ | ❌ |
+| Quality Filter | ✅ (stars) | ❌ | ❌ | ❌ |
+| Language Filter | ✅ | ⚠️ | ❌ | ❌ |
+| Threat Models | ✅ | ❌ | ❌ | ❌ |
+| Active Projects | ✅ | ⚠️ | ❌ | ❌ |
+| 50+ Keywords | ✅ | ❌ | ❌ | ❌ |
+
+## Success Metrics
+
+- **Month 1:** 500+ privacy projects discovered
+- **Month 2:** 50+ papers with implementations extracted
+- **Month 3:** Top 10 Privacy Actor on Apify Store
+- **Month 6:** 10K+ monthly users (privacy builders)
+- **Year 1:** Privacy Stack becomes go-to resource for privacy ecosystem
+
+## Marketing Hooks
+
+- **For developers:** "Find every Rust privacy project in one place"
+- **For researchers:** "Papers + working implementations + threat models"
+- **For crypto builders:** "All coinjoin, stealth address, ring sig projects"
+- **For auditors:** "Quality-filtered, metadata-rich privacy projects"
