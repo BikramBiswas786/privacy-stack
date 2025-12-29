@@ -1,4 +1,3 @@
-cat > .actor/output_schema.json << 'EOF'
 {
   "actorOutputSchemaVersion": 1,
   "title": "Privacy Stack Output",
@@ -43,5 +42,3 @@ cat > .actor/output_schema.json << 'EOF'
     }
   }
 }
-EOF
-cat .actor/output_schema.json
