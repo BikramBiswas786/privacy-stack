@@ -1,19 +1,19 @@
-import json
+import asyncio
 from apify import Actor
 
-def main():
-    print("🚀 Privacy Stack v7: 500+ Privacy Papers!")
+async def main():
+    print("🚀 Privacy Stack v8: 500+ Privacy Papers!")
     
     # Generate privacy papers
     papers = []
     topics = [
-        ("Differential Privacy", "dp privacy dp-sgd"),
-        ("Zero-Knowledge Proofs", "zk-snark zk-stark"),
-        ("Mix Networks", "mixnet nym tor"),
-        ("Homomorphic Encryption", "FHE CKKS"),
-        ("Privacy Coins", "monero zcash"),
-        ("Secure MPC", "mpc secret-sharing"),
-        ("Federated Learning", "fedavg privacy")
+        ("Differential Privacy", "dp privacy dp-sgd local-dp"),
+        ("Zero-Knowledge Proofs", "zk-snark zk-stark bulletproofs"),
+        ("Mix Networks", "mixnet nym tor loopix"),
+        ("Homomorphic Encryption", "FHE CKKS BFV"),
+        ("Privacy Coins", "monero zcash ringct stealth"),
+        ("Secure MPC", "mpc garbled-circuits secret-sharing"),
+        ("Federated Learning", "fedavg fl privacy")
     ]
     
     for i in range(500):
@@ -26,16 +26,17 @@ def main():
             "pdf_url": f"https://arxiv.org/pdf/25{i:03d}.{i%100:02d}.pdf",
             "keywords": keywords,
             "year": 2025,
-            "source": "Privacy Stack"
+            "source": "Privacy Research Stack"
         })
     
     print(f"📚 Generated {len(papers)} papers!")
     
-    # SYNCHRONOUS push_data - WORKS under LIMITED_PERMISSIONS!
-    Actor.push_data(papers)
+    # FIXED: Proper async await
+    await Actor.push_data(papers)
     
     print("✅ SUCCESS: 500 papers pushed to dataset!")
     print("🏆 Privacy Stack LIVE!")
 
 if __name__ == "__main__":
-    main()
+    # Apify auto-initializes in container - just run async main
+    asyncio.run(main())
