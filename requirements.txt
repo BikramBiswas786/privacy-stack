@@ -1,7 +1,4 @@
-cat > requirements.txt << 'EOF'
+# NO shell commands, NO here-docs, NO cat/EOF
 apify-client==1.7.0
-httpx==0.25.0
+httpx==0.25.0  
 feedparser==6.0.10
-praw==7.7.0
-EOF
-cat requirements.txt
