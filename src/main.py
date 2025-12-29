@@ -1,8 +1,9 @@
-import asyncio
-from apify import Actor
+import json
+import os
+from apify_client import ApifyClient
 
-async def main():
-    print("🚀 Privacy Stack v8: 500+ Privacy Papers!")
+def main():
+    print("🚀 Privacy Stack v9: 500+ Privacy Papers!")
     
     # Generate privacy papers
     papers = []
@@ -31,12 +32,18 @@ async def main():
     
     print(f"📚 Generated {len(papers)} papers!")
     
-    # FIXED: Proper async await
-    await Actor.push_data(papers)
+    # DIRECT DATASET PUSH - BYPASSES Actor initialization!
+    try:
+        client = ApifyClient(os.environ.get("APIFY_TOKEN"))
+        dataset = client.dataset().push_items(papers)
+        print(f"✅ SUCCESS: Pushed {len(papers)} papers to dataset {dataset['id'][:8]}!")
+    except Exception as e:
+        print(f"❌ Dataset push failed: {e}")
+        # Fallback: Print JSON for manual copy
+        print("📄 Sample papers (copy-paste ready):")
+        print(json.dumps(papers[:3], indent=2))
     
-    print("✅ SUCCESS: 500 papers pushed to dataset!")
     print("🏆 Privacy Stack LIVE!")
 
 if __name__ == "__main__":
-    # Apify auto-initializes in container - just run async main
-    asyncio.run(main())
+    main()
