@@ -1,0 +1,65 @@
+cat > .actor/input_schema.json << 'EOF'
+{
+  "title": "Privacy Stack - Ultimate Privacy Project Scraper",
+  "description": "Scrape privacy projects, papers, implementations across GitHub, arXiv, Reddit, Twitter, HackerNews. Target: mixnets, ZK proofs, Tor, crypto privacy, anonymity networks.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "sources": {
+      "sectionCaption": "Data Sources",
+      "title": "Sources to Scrape",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["github", "arxiv", "reddit", "hackernews", "twitter"]
+      },
+      "default": ["github", "arxiv"],
+      "description": "Select which platforms to scrape for privacy projects"
+    },
+    "keywords": {
+      "title": "Privacy Keywords",
+      "type": "array",
+      "items": {"type": "string"},
+      "default": ["mixnet", "zk-proof", "tor", "nym", "monero", "zcash", "signal", "coinjoin", "mpc", "fhe"],
+      "description": "Keywords to search (mixnet, zk, tor, nym, monero, zcash, signal, coinjoin, mpc, fhe, etc)"
+    },
+    "starsMin": {
+      "title": "Minimum GitHub Stars",
+      "type": "integer",
+      "default": 50,
+      "minimum": 0,
+      "description": "Only return projects with at least this many stars"
+    },
+    "updatedDays": {
+      "title": "Updated in Last N Days",
+      "type": "integer",
+      "default": 90,
+      "minimum": 1,
+      "description": "Only return recently active projects (0 = all time)"
+    },
+    "language": {
+      "title": "Programming Language",
+      "type": "string",
+      "enum": ["Python", "Rust", "Go", "JavaScript", "Haskell", "C++", "All"],
+      "default": "All",
+      "description": "Filter by primary language"
+    },
+    "maxResults": {
+      "title": "Max Results",
+      "type": "integer",
+      "default": 100,
+      "minimum": 10,
+      "maximum": 500,
+      "description": "Maximum projects to return"
+    },
+    "includeMetadata": {
+      "title": "Include Metadata",
+      "type": "boolean",
+      "default": true,
+      "description": "Include threat models, paper links, benchmarks, funding info"
+    }
+  },
+  "required": ["keywords"]
+}
+EOF
+cat .actor/input_schema.json
