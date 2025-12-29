@@ -1,4 +1,3 @@
-cat > .actor/input_schema.json << 'EOF'
 {
   "title": "Privacy Stack - Ultimate Privacy Project Scraper",
   "description": "Scrape privacy projects, papers, implementations across GitHub, arXiv, Reddit, Twitter, HackerNews. Target: mixnets, ZK proofs, Tor, crypto privacy, anonymity networks.",
@@ -61,5 +60,3 @@ cat > .actor/input_schema.json << 'EOF'
   },
   "required": ["keywords"]
 }
-EOF
-cat .actor/input_schema.json
