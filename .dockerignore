@@ -1,0 +1,8 @@
+# Ignore requirements.txt completely
+requirements.txt
+
+# Ignore node_modules
+node_modules
+
+# Ignore git
+.git
