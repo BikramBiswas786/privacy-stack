@@ -8,6 +8,7 @@
       "sectionCaption": "Data Sources",
       "title": "Sources to Scrape",
       "type": "array",
+      "editor": "select",
       "items": {
         "type": "string",
         "enum": ["github", "arxiv", "reddit", "hackernews", "twitter"]
@@ -18,6 +19,7 @@
     "keywords": {
       "title": "Privacy Keywords",
       "type": "array",
+      "editor": "textarea",
       "items": {"type": "string"},
       "default": ["mixnet", "zk-proof", "tor", "nym", "monero", "zcash", "signal", "coinjoin", "mpc", "fhe"],
       "description": "Keywords to search (mixnet, zk, tor, nym, monero, zcash, signal, coinjoin, mpc, fhe, etc)"
@@ -39,6 +41,7 @@
     "language": {
       "title": "Programming Language",
       "type": "string",
+      "editor": "select",
       "enum": ["Python", "Rust", "Go", "JavaScript", "Haskell", "C++", "All"],
       "default": "All",
       "description": "Filter by primary language"
