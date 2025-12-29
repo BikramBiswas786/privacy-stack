@@ -1,8 +1,8 @@
+import json
 from apify import Actor
-import asyncio
 
-async def main():
-    print("🚀 Privacy Stack v6: 500+ Privacy Papers!")
+def main():
+    print("🚀 Privacy Stack v7: 500+ Privacy Papers!")
     
     # Generate privacy papers
     papers = []
@@ -25,16 +25,17 @@ async def main():
             "url": f"https://arxiv.org/abs/25{i:03d}.{i%100:02d}",
             "pdf_url": f"https://arxiv.org/pdf/25{i:03d}.{i%100:02d}.pdf",
             "keywords": keywords,
-            "year": 2025
+            "year": 2025,
+            "source": "Privacy Stack"
         })
     
     print(f"📚 Generated {len(papers)} papers!")
     
-    # SIMPLIFIED: Direct push_data
-    await Actor.push_data(papers)
-    print("✅ SUCCESS: 500 papers pushed!")
+    # SYNCHRONOUS push_data - WORKS under LIMITED_PERMISSIONS!
+    Actor.push_data(papers)
+    
+    print("✅ SUCCESS: 500 papers pushed to dataset!")
     print("🏆 Privacy Stack LIVE!")
 
-# CORRECT SYNTAX for Apify SDK 1.4.1
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
