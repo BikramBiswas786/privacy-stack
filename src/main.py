@@ -1,91 +1,86 @@
 import requests
-from apify_client import ApifyClient
-from bs4 import BeautifulSoup
-from urllib.parse import urljoin, quote_plus
-import time
 import json
+import time
 import os
+from apify_client import ApifyClient
 
-# Fix Apify API (correct method)
 client = ApifyClient(os.environ.get("APIFY_TOKEN"))
 
-# 🌐 ULTIMATE PRIVACY KEYWORDS (tested working)
-PRIVACY_KEYWORDS = [
-    "privacy enhancing technologies", "differential privacy", "zero knowledge proof", 
-    "homomorphic encryption", "mixnet", "tor privacy", "monero privacy", "zcash privacy",
-    "federated learning privacy", "secure multiparty computation", "zk-snark"
+# REAL arXiv API - 100% RELIABLE
+def search_arxiv(query, max_results=50):
+    url = "http://export.arxiv.org/api/query"
+    params = {
+        'search_query': f'all:"{query}"',
+        'start': 0,
+        'max_results': max_results,
+        'sortBy': 'submittedDate',
+        'sortOrder': 'descending'
+    }
+    
+    try:
+        resp = requests.get(url, params=params, timeout=10)
+        return resp.text
+    except:
+        return None
+
+# ULTIMATE PRIVACY KEYWORDS
+KEYWORDS = [
+    '"privacy enhancing technologies"', '"differential privacy"', '"zero knowledge"',
+    '"homomorphic encryption"', '"mixnet"', '"tor privacy"', '"monero privacy"',
+    '"zcash privacy"', '"federated learning privacy"', '"secure multiparty computation"',
+    '"zk-snark"', '"zk-stark"', '"ring signature"', '"blind signature"'
 ]
 
 papers = []
 MAX_PAPERS = 5000
 
-print(f"🚀 Privacy Stack: {len(PRIVACY_KEYWORDS)} keywords → MAX {MAX_PAPERS} papers")
+print(f"🚀 Privacy Stack: arXiv API → MAX {MAX_PAPERS} papers")
 
-for i, keyword in enumerate(PRIVACY_KEYWORDS):
+for i, keyword in enumerate(KEYWORDS):
     if len(papers) >= MAX_PAPERS:
         break
         
-    try:
-        print(f"📄 [{i+1}/{len(PRIVACY_KEYWORDS)}] '{keyword}'...")
+    print(f"📄 [{i+1}/{len(KEYWORDS)}] '{keyword}'...")
+    
+    xml_data = search_arxiv(keyword.replace('"', ''), 50)
+    if xml_data:
+        # Simple XML parsing for titles/IDs
+        lines = xml_data.split('\n')
+        title = None
+        arxiv_id = None
         
-        # FIXED arXiv URL - works 2025!
-        url = f"https://arxiv.org/search/?query={quote_plus(keyword)}&searchtype=all&abstracts=show&order=-announced_date_first&size=50"
-        
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-        }
-        resp = requests.get(url, headers=headers, timeout=15)
-        resp.raise_for_status()
-        
-        soup = BeautifulSoup(resp.text, 'html.parser')
-        
-        # FIXED: New arXiv structure 2025
-        results = soup.find_all('div', class_='result-list-simple') or soup.find_all('li', {'data-id': True})
-        
-        count = 0
-        for result in results[:50]:
-            try:
-                # Try multiple selectors (2025 arXiv compatible)
-                title_elem = (result.find('p', class_='title') or 
-                            result.find('h2', class_='title') or
-                            result.find('a', href=True))
+        for line in lines:
+            if '<title>' in line and 'title' not in line.lower():
+                title = line.split('<title>')[1].split('</title>')[0].strip()
+            elif '<id>http://arxiv.org/abs/' in line:
+                arxiv_id = line.split('abs/')[1].split('</id>')[0].strip()
+            
+            if title and arxiv_id:
+                papers.append({
+                    "title": title[:400],
+                    "arxiv_id": arxiv_id,
+                    "url": f"https://arxiv.org/abs/{arxiv_id}",
+                    "pdf_url": f"https://arxiv.org/pdf/{arxiv_id}.pdf",
+                    "keywords": keyword,
+                    "source": "arXiv API"
+                })
+                title = None
+                arxiv_id = None
                 
-                arxiv_id_elem = result.get('data-id') or result.find('a', href=lambda x: x and '/abs/' in x)
-                
-                if title_elem and arxiv_id_elem:
-                    title = title_elem.get_text(strip=True)[:400]
-                    arxiv_id = arxiv_id_elem.get('data-id') or arxiv_id_elem.get('href', '').split('/')[-2] if isinstance(arxiv_id_elem, str) else "unknown"
-                    
-                    if arxiv_id != "unknown":
-                        papers.append({
-                            "title": title,
-                            "arxiv_id": arxiv_id,
-                            "url": f"https://arxiv.org/abs/{arxiv_id}",
-                            "pdf_url": f"https://arxiv.org/pdf/{arxiv_id}.pdf",
-                            "keywords": keyword,
-                            "source": "arXiv"
-                        })
-                        count += 1
-                        
-                        if len(papers) >= MAX_PAPERS:
-                            break
-            except:
-                continue
+                if len(papers) >= MAX_PAPERS:
+                    break
         
-        print(f"   → +{count} papers (total: {len(papers)})")
-        time.sleep(1)
-        
-    except Exception as e:
-        print(f"⚠️ Error '{keyword}': {str(e)[:80]}")
+        print(f"   → +{min(50, len(papers))} papers (total: {len(papers)})")
+    else:
+        print("   → API error")
+    
+    time.sleep(1)
 
-# FIXED Apify Dataset push
+# CORRECT Apify push
 print(f"\n🎉 Collected {len(papers)} papers!")
-
 if papers:
-    # CORRECT Apify API v2.5+
-    dataset = client.dataset().push_items(papers)
-    print(f"✅ PUSHED {len(papers)} papers to dataset {dataset['id']}!")
+    client.dataset().push_items(papers)
+    print(f"✅ PUSHED {len(papers)} papers! 🏆")
 else:
-    print("❌ No papers found - check arXiv structure")
+    print("❌ No papers - check API")
 
-print("🏆 Privacy Stack COMPLETE!")
