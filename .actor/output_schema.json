@@ -1,7 +1,7 @@
 {
   "actorOutputSchemaVersion": 1,
   "title": "Privacy Stack - 5000 arXiv Privacy Papers",
-  "description": "5000 REAL unique arXiv papers across 4 privacy categories (Internet, Crypto, Data, Post-Quantum)",
+  "description": "5000 REAL unique arXiv papers across 4 privacy categories",
   "properties": {
     "allPapers": {
       "type": "string",
@@ -12,13 +12,13 @@
     "internetPrivacy": {
       "type": "string",
       "title": "🌐 Internet Privacy (1250 papers)",
-      "description": "Tor, mixnets, anonymous routing, I2P papers",
+      "description": "Tor, mixnets, anonymous routing papers",
       "template": "{{links.apiDefaultDatasetUrl}}/items"
     },
     "cryptoPrivacy": {
       "type": "string",
       "title": "🔐 Crypto Privacy (1250 papers)",
-      "description": "ZK proofs, FHE, MPC, Bulletproofs papers",
+      "description": "ZK, FHE, MPC research papers",
       "template": "{{links.apiDefaultDatasetUrl}}/items"
     },
     "dataPrivacy": {
@@ -30,13 +30,13 @@
     "postQuantum": {
       "type": "string",
       "title": "⚛️ Post-Quantum (1250 papers)",
-      "description": "Kyber, Dilithium, SPHINCS+, Falcon papers",
+      "description": "Kyber, Dilithium, lattice crypto papers",
       "template": "{{links.apiDefaultDatasetUrl}}/items"
     },
     "runLog": {
       "type": "string",
       "title": "📋 Live Logs",
-      "description": "Real-time scraping progress and statistics",
+      "description": "Scraping progress and statistics",
       "template": "{{links.consoleRunUrl}}/log"
     }
   }
