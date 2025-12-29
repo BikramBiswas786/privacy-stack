@@ -1,209 +1,43 @@
 {
-  "title": "Privacy Stack Research Papers Output",
-  "description": "Output schema for privacy and anonymity research papers with implementations",
-  "type": "object",
-  "schemaVersion": 1,
+  "actorOutputSchemaVersion": 1,
+  "title": "Privacy Stack - 5000 arXiv Privacy Papers",
+  "description": "5000 REAL unique arXiv papers across 4 privacy categories (Internet, Crypto, Data, Post-Quantum)",
   "properties": {
-    "projects": {
-      "title": "Privacy & Anonymity Projects",
-      "description": "Collection of research papers and implementations",
-      "type": "object",
-      "additionalProperties": {
-        "type": "object",
-        "title": "Research Project",
-        "description": "Individual privacy research project with paper and code",
-        "required": ["title", "category", "template"],
-        "properties": {
-          "title": {
-            "type": "string",
-            "description": "Title of the research paper",
-            "minLength": 1
-          },
-          "category": {
-            "type": "string",
-            "description": "Category of privacy research",
-            "enum": [
-              "mixnets",
-              "zero-knowledge-proofs",
-              "differential-privacy",
-              "cryptography",
-              "anonymity-networks",
-              "blockchain-privacy",
-              "homomorphic-encryption",
-              "secure-multi-party-computation",
-              "post-quantum-cryptography",
-              "other"
-            ]
-          },
-          "template": {
-            "type": "string",
-            "description": "Template type or identifier for the implementation",
-            "enum": ["research-paper", "apify-actor", "python-module", "documentation", "implementation"],
-            "default": "research-paper"
-          },
-          "authors": {
-            "type": "array",
-            "description": "List of paper authors",
-            "items": {
-              "type": "string"
-            }
-          },
-          "year": {
-            "type": "integer",
-            "description": "Publication year",
-            "minimum": 1980,
-            "maximum": 2100
-          },
-          "abstract": {
-            "type": "string",
-            "description": "Paper abstract or summary",
-            "minLength": 10
-          },
-          "arxivId": {
-            "type": "string",
-            "description": "arXiv paper ID if available",
-            "pattern": "^[0-9]{4}\\.[0-9]{4,5}$"
-          },
-          "doi": {
-            "type": "string",
-            "description": "Digital Object Identifier",
-            "pattern": "^10\\."
-          },
-          "url": {
-            "type": "string",
-            "description": "Link to the paper",
-            "format": "uri"
-          },
-          "pythonImplementation": {
-            "type": "object",
-            "description": "Python implementation details",
-            "properties": {
-              "available": {
-                "type": "boolean",
-                "description": "Whether implementation is available"
-              },
-              "repositoryUrl": {
-                "type": "string",
-                "format": "uri",
-                "description": "GitHub repository URL"
-              },
-              "repositoryName": {
-                "type": "string",
-                "description": "Repository name"
-              },
-              "language": {
-                "type": "string",
-                "enum": ["python", "python3", "mixed"],
-                "default": "python"
-              },
-              "dependencies": {
-                "type": "array",
-                "description": "Required Python packages",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "maintainedBy": {
-                "type": "string",
-                "description": "Repository maintainer"
-              },
-              "stars": {
-                "type": "integer",
-                "description": "GitHub stars count",
-                "minimum": 0
-              }
-            }
-          },
-          "keyTopics": {
-            "type": "array",
-            "description": "Key topics covered in the paper",
-            "items": {
-              "type": "string"
-            }
-          },
-          "relatedWorks": {
-            "type": "array",
-            "description": "Related research papers",
-            "items": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "type": "string"
-                },
-                "authors": {
-                  "type": "string"
-                },
-                "year": {
-                  "type": "integer"
-                }
-              }
-            }
-          },
-          "sourceUrl": {
-            "type": "string",
-            "description": "URL where paper was found",
-            "format": "uri"
-          },
-          "scrapedAt": {
-            "type": "string",
-            "description": "Timestamp of when data was scraped",
-            "format": "date-time"
-          },
-          "qualityScore": {
-            "type": "number",
-            "description": "Quality rating (0-1)",
-            "minimum": 0,
-            "maximum": 1
-          },
-          "notes": {
-            "type": "string",
-            "description": "Additional notes or observations"
-          }
-        }
-      }
+    "arxivPapers": {
+      "type": "string",
+      "title": "📚 arXiv Papers Dataset",
+      "description": "5000 unique privacy research papers with URLs, authors, summaries",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
     },
-    "metadata": {
-      "type": "object",
-      "description": "Scraping metadata and statistics",
-      "properties": {
-        "totalProjects": {
-          "type": "integer",
-          "description": "Total number of projects scraped",
-          "minimum": 0
-        },
-        "projectsWithImplementation": {
-          "type": "integer",
-          "description": "Projects that have Python implementations",
-          "minimum": 0
-        },
-        "categories": {
-          "type": "object",
-          "description": "Count of projects per category",
-          "additionalProperties": {
-            "type": "integer",
-            "minimum": 0
-          }
-        },
-        "scrapingStartTime": {
-          "type": "string",
-          "format": "date-time",
-          "description": "When scraping started"
-        },
-        "scrapingEndTime": {
-          "type": "string",
-          "format": "date-time",
-          "description": "When scraping ended"
-        },
-        "sourcesCovered": {
-          "type": "array",
-          "description": "Sources that were scraped",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
+    "internetPrivacy": {
+      "type": "string",
+      "title": "🌐 Internet Privacy (1250 papers)",
+      "description": "Tor, mixnets, anonymous routing papers",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?format=json&cleanLabels=true"
+    },
+    "cryptoPrivacy": {
+      "type": "string",
+      "title": "🔐 Cryptographic Privacy (1250 papers)",
+      "description": "ZK, FHE, MPC research papers",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?format=json&cleanLabels=true"
+    },
+    "dataPrivacy": {
+      "type": "string",
+      "title": "📊 Data Privacy (1250 papers)",
+      "description": "Differential Privacy, Federated Learning papers",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?format=json&cleanLabels=true"
+    },
+    "postQuantum": {
+      "type": "string",
+      "title": "⚛️ Post-Quantum Privacy (1250 papers)",
+      "description": "Kyber, Dilithium, lattice crypto papers",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?format=json&cleanLabels=true"
+    },
+    "runLog": {
+      "type": "string",
+      "title": "📋 Run Log",
+      "description": "Detailed scraping log with statistics",
+      "template": "{{links.consoleRunUrl}}/log"
     }
-  },
-  "required": ["projects"],
-  "additionalProperties": false
+  }
 }
