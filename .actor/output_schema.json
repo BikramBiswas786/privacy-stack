@@ -1,4 +1,5 @@
 {
+  "actorOutputSchemaVersion": 1,
   "title": "Privacy Stack Output",
   "description": "Privacy projects and papers from GitHub and arXiv",
   "type": "object",
@@ -9,17 +10,53 @@
       "items": {
         "type": "object",
         "properties": {
-          "name": { "type": "string", "description": "Project name" },
-          "stars": { "type": "integer", "description": "GitHub stars" },
-          "url": { "type": "string", "description": "Project URL" },
-          "description": { "type": "string", "description": "Project description" },
-          "language": { "type": "string", "description": "Programming language" },
-          "source": { "type": "string", "enum": ["github", "arxiv"] },
-          "keyword": { "type": "string", "description": "Matched keyword" }
+          "name": {
+            "type": "string",
+            "description": "Project name"
+          },
+          "stars": {
+            "type": "integer",
+            "description": "GitHub stars"
+          },
+          "url": {
+            "type": "string",
+            "description": "Project URL"
+          },
+          "description": {
+            "type": "string",
+            "description": "Project description"
+          },
+          "language": {
+            "type": "string",
+            "description": "Programming language"
+          },
+          "source": {
+            "type": "string",
+            "enum": ["github", "arxiv"],
+            "description": "Data source"
+          },
+          "keyword": {
+            "type": "string",
+            "description": "Matched keyword"
+          }
         }
       }
     },
-    "total": { "type": "integer", "description": "Total items found" },
-    "scrapedAt": { "type": "string", "description": "Timestamp of scrape" }
+    "total": {
+      "type": "integer",
+      "description": "Total items found"
+    },
+    "scrapedAt": {
+      "type": "string",
+      "description": "Timestamp of scrape"
+    },
+    "sources": {
+      "type": "array",
+      "description": "Sources used"
+    },
+    "keywords": {
+      "type": "array",
+      "description": "Keywords searched"
+    }
   }
 }
