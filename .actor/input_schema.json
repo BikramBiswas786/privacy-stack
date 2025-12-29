@@ -1,6 +1,6 @@
 {
   "title": "Privacy Stack - Ultimate Privacy Project Scraper",
-  "description": "Scrape privacy projects, papers, implementations across GitHub, arXiv, Reddit, Twitter, HackerNews. Target: mixnets, ZK proofs, Tor, crypto privacy, anonymity networks.",
+  "description": "Scrape privacy projects, papers, implementations across GitHub, arXiv, Reddit, Twitter, HackerNews.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
@@ -13,52 +13,49 @@
         "type": "string",
         "enum": ["github", "arxiv", "reddit", "hackernews", "twitter"]
       },
-      "default": ["github", "arxiv"],
-      "description": "Select which platforms to scrape for privacy projects"
+      "default": ["github", "arxiv"]
     },
     "keywords": {
       "title": "Privacy Keywords",
       "type": "array",
       "editor": "select",
-      "items": {"type": "string"},
-      "default": ["mixnet", "zk-proof", "tor", "nym", "monero"],
-      "description": "Keywords to search (mixnet, zk-proof, tor, nym, monero, zcash, signal, coinjoin, mpc, fhe)"
+      "items": {
+        "type": "string",
+        "enum": ["mixnet", "zk-proof", "tor", "nym", "monero", "zcash", "signal", "coinjoin", "mpc", "fhe"]
+      },
+      "default": ["mixnet", "zk-proof", "tor"],
+      "description": "Select privacy keywords to search"
     },
     "starsMin": {
       "title": "Minimum GitHub Stars",
       "type": "integer",
       "default": 50,
-      "minimum": 0,
-      "description": "Only return projects with at least this many stars"
+      "minimum": 0
     },
     "updatedDays": {
       "title": "Updated in Last N Days",
       "type": "integer",
       "default": 90,
-      "minimum": 1,
-      "description": "Only return recently active projects"
+      "minimum": 1
     },
     "language": {
       "title": "Programming Language",
       "type": "string",
       "editor": "select",
       "enum": ["Python", "Rust", "Go", "JavaScript", "Haskell", "C++", "All"],
-      "default": "All",
-      "description": "Filter by primary language"
+      "default": "All"
     },
     "maxResults": {
       "title": "Max Results",
       "type": "integer",
       "default": 100,
       "minimum": 10,
-      "maximum": 500,
-      "description": "Maximum projects to return"
+      "maximum": 500
     },
     "includeMetadata": {
       "title": "Include Metadata",
       "type": "boolean",
-      "default": true,
-      "description": "Include threat models, paper links, benchmarks"
+      "default": true
     }
   },
   "required": ["keywords"]
