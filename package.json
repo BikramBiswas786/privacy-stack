@@ -1,36 +1,10 @@
 {
-  "name": "privacy-stack-research-scraper",
+  "name": "privacy-stack",
   "version": "1.0.0",
-  "description": "Scrapes and aggregates 50+ research papers on privacy and anonymity with production Python implementations",
-  "main": "src/main.js",
-  "type": "commonjs",
-  "scripts": {
-    "start": "node src/main.js",
-    "lint": "eslint src",
-    "lint:fix": "eslint src --fix"
-  },
-  "keywords": [
-    "privacy",
-    "anonymity",
-    "research-papers",
-    "cryptography",
-    "mixnets",
-    "apify",
-    "web-scraping"
-  ],
-  "author": "BikramBiswas786",
-  "license": "MIT",
   "dependencies": {
-    "apify": "^3.1.0",
-    "axios": "^1.6.0",
-    "cheerio": "^1.0.0-rc.12"
-  },
-  "devDependencies": {
-    "eslint": "^8.50.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.28.1"
-  },
-  "engines": {
-    "node": ">=18.0.0"
+    "apify": "^3.0.0",
+    "puppeteer": "^22.0.0",
+    "cheerio": "^1.0.0-rc.12",
+    "axios": "^1.6.0"
   }
 }
